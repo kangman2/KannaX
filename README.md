@@ -33,7 +33,8 @@
 ## How To Deploy 
 * With Heroku:
 <p align="center">
-   <a href = "https://heroku.com/deploy?template=https://github.com/fnixdev/MyGpack"><img src="https://telegra.ph/file/57c4edb389224c9cf9996.png" alt="Press to Takeoff" width="490px"></a>
+   <a href = "https://heroku.com/deploy?template=https://github.com/fnixdev/KannaBot/tree/master"> <img src="https://www.herokucdn.com/deploy/button.svg" alt="Criar app no Heroku"></a>
+   
 </p>
 <br>
 
