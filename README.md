@@ -1,18 +1,10 @@
-<h2 align="center"><b>Owner: <a href="https://telegram.dog/fnixdev">FniXDev</a></b></h2>
-<br>
-<p align="center">
-   <a href="https://github.com/fnixdev/KannaX"><img src="https://telegra.ph/file/471f7e7c7d5649a73ed1a.jpg" alt="KannaX" width=400px></a>
-   <br>
-   <br>
-</p>
-<h1>KannaX</h1>
-<b>Pluggable Telegram UserBot</b>
-<br>
+<p align="center"><a href="https://t.me/kannachanot"><img src="https://telegra.ph//file/c6d95e3f661dc15bf0df7.jpg" width="3000"></a></p> 
+<h1 align="center"><b>KannaChan-USERBOT  </b></h1>
+<h4 align="center">A Powerful, Smart And Simple Userbot In Pyrogram.</h4>
 
-**KannaX** is a Powerful , _Pluggable_ Telegram UserBot written in _Python_ using [Pyrogram](https://github.com/pyrogram/pyrogram).
-<br>
-<p align="center">
-    <a href="https://telegram.dog/x_xtests"><img src="https://img.shields.io/badge/Support%20Group-KannaX--%F0%9D%91%BF-blue?&logo=telegram&style=social" width=220px></a></p>
+
+## Support 
+<a href="https://t.me/fnixdev"><img src="https://img.shields.io/badge/Join-Telegram%20Channel-red.svg?logo=Telegram"></a>
 
 ## Disclaimer
 ```
