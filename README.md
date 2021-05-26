@@ -1,5 +1,5 @@
-<p align="center"><a href="https://t.me/kannachanot"><img src="https://telegra.ph//file/c6d95e3f661dc15bf0df7.jpg" width="3000"></a></p> 
-<h1 align="center"><b>KannaChan-USERBOT  </b></h1>
+<p align="center"><a href="https://t.me/kannachanot"><img src="https://telegra.ph//file/c6d95e3f661dc15bf0df7.jpg" width="1000"></a></p> 
+<h1 align="center"><b>KannaX-USERBOT  </b></h1>
 <h4 align="center">A Powerful, Smart And Simple Userbot In Pyrogram.</h4>
 
 
