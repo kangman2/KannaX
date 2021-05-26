@@ -33,7 +33,7 @@
 ## How To Deploy 
 * With Heroku:
 <p align="center">
-   <a href = "https://heroku.com/deploy?template=https://github.com/fnixdev/KannaBot/tree/master"> <img src="https://www.herokucdn.com/deploy/button.svg" alt="Criar app no Heroku"></a>
+   <a href = "https://heroku.com/deploy?template=https://github.com/fnixdev/MyGpack"><img src="https://www.herokucdn.com/deploy/button.svg" alt="MyGpac"> </a>
    
 </p>
 <br>
@@ -42,7 +42,7 @@
 * First click The Button Above.
 * Fill `API_ID`, `API_HASH`, `DATABASE_URL`, `LOG_CHANNEL_ID`, `HEROKU_APP_NAME` and `HEROKU_API_KEY` (**required**)
 * Then fill Dual Mode vars : `OWNER_ID`, `BOT_TOKEN` and `HU_STRING_SESSION`
-* Then fill [other **non-required** vars](https://telegra.ph/Heroku-Vars-for-KannaX-08-25) later
+* Then fill [other **non-required** vars](https://telegra.ph/Deploy-VARs-Heroku-05-26) later
 * Finally **hit deploy** button
 ## String Session
 **VAR ->** `HU_STRING_SESSION`
@@ -57,13 +57,13 @@
 ## Other Ways
 
 * With Docker 🐳 
-    <a href="https://github.com/code-rgb/KannaX/blob/alpha/resources/readmeDocker.md"><b>See Detailed Guide</b></a>
+    <a href="https://github.com/fnixdev/KannaX/blob/master/resources/readmeDocker.md"><b>See Detailed Guide</b></a>
 
 * With Git, Python and pip 🔧
   ```bash
   # clone the repo
-  git clone https://github.com/code-rgb/kannax-x.git
-  cd kannax-x
+  git clone https://github.com/fnixdev/KannaX.git
+  cd KannaX
 
   # create virtualenv
   virtualenv -p /usr/bin/python3 venv
@@ -81,17 +81,6 @@
   # finally run the KannaX ;)
   bash run
   ```
-
-
-<h2>Guide to Upstream Forked Repo</h2>
-<a href="https://telegra.ph/Upstream-KannaX-Forked-Repo-Guide-07-04"><b>Upstream Forked Repo</b></a>
-<br>
-<br>
-
-<h3 align="center">Youtube Tutorial<h3>
-<p align="center"><a href="https://youtu.be/M4T_BJvFqkc"><img src="https://i.imgur.com/VVgSk2m.png" width=250px></a>
-</p>
-
 
 ## Features 
 
@@ -142,6 +131,7 @@ async def test_filter(message: Message):
 </details> 
 
 ### Project Credits 
+* [USERGE-X](https://github.com/code-rgb/USERGE-X)
 * [Pyrogram Assistant](https://github.com/pyrogram/assistant)
 * [PyroGramBot](https://github.com/SpEcHiDe/PyroGramBot)
 * [PaperPlane](https://github.com/RaphielGang/Telegram-Paperplane)
