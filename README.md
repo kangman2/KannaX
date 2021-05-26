@@ -33,7 +33,7 @@
 ## How To Deploy 
 * With Heroku:
 <p align="center">
-   <a href = "https://heroku.com/deploy?template=https://github.com/fnixdev/MyGpack"><img src="https://www.herokucdn.com/deploy/button.svg" alt="MyGpac"> </a>
+   <a href = "https://heroku.com/deploy?template=https://github.com/fnixdev/KannaX-Deploy"><img src="https://www.herokucdn.com/deploy/button.svg" alt="MyGpac"> </a>
    
 </p>
 <br>
