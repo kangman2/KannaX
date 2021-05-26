@@ -229,7 +229,6 @@ class Bot_Alive:
         alive_info_ = f"""
 <a href="https://telegram.dog/fnixdev"><b>KannaX</a> is Up and Running.</b>
 
- `Yes Sir ! I'm Alive`
 ╔═•ೋೋ•═══════════════════╗
 ::  👾 KannaX    :   `v{get_version()}`
 ::  🐍 Python     :   `v{versions.__python_version__}`
