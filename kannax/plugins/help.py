@@ -72,7 +72,7 @@ REPO_X = InlineQueryResultArticle(
                     "🚀 Deploy KannaX",
                     url=(
                         "https://heroku.com/deploy?template="
-                        "https://github.com/fnixdev/MyGpack"
+                        "https://github.com/fnixdev/KannaX-Deploy"
                     ),
                 ),
             ]
