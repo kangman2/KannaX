@@ -183,7 +183,7 @@ if kannax.has_bot:
 Hello 👋 {from_user.fname},
 Nice To Meet You !, I'm <b>{bot_.fname}</b> A Bot.
 
-        <b><i>Powered by</i> [KannaX](https://t.me/fnixdev)
+        <b><i>Powered by</i> [fnixdev](https://t.me/fnixdev)
 
 My Master is : {owner_.flname}</b>
 """
