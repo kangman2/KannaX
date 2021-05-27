@@ -24,9 +24,9 @@ PMPERMIT_MSG = {}
 pmCounter: Dict[int, int] = {}
 allowAllFilter = filters.create(lambda _, __, ___: Config.ALLOW_ALL_PMS)
 noPmMessage = bk_noPmMessage = (
-    "Hey {fname} esta é uma mensagem automatica\n"
-    "Infelizmente meu mestre não aceita mensagem de estranhos\n"
-    "Entre em contato comigo em um grupo ou espere que meu mestre aprove você "
+    "`Hey {fname} esta é uma mensagem automatica.`\n"
+    "`Infelizmente meu mestre não aceita mensagem de estranhos.`\n"
+    "`Entre em contato comigo em um grupo ou espere que meu mestre aprove você.`"
 )
 blocked_message = bk_blocked_message = "**You were automatically blocked**"
 
