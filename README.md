@@ -49,7 +49,7 @@
 #### By HEROKU
 - [open your app](https://dashboard.heroku.com/apps/) then go to **more** -> **run console** and type `bash genStr` and click **run**.
 #### On REPL
-- [Generate on REPL](https://repl.it/@Leorio/stringsessiongen#main.py)
+- [Generate on REPL](https://replit.com/@fnixdev/StringSessionKX)
 ### Read more
 <details>
   <summary><b>Details and Guides</b></summary>
