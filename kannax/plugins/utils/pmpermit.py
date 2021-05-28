@@ -24,12 +24,10 @@ PMPERMIT_MSG = {}
 pmCounter: Dict[int, int] = {}
 allowAllFilter = filters.create(lambda _, __, ___: Config.ALLOW_ALL_PMS)
 noPmMessage = bk_noPmMessage = (
-    "Hi {fname} , \n"
-"You have landed in @fnixdev DM.\n"
-"<code>I think u forget to read my master's BIO</code>\n"
- "Ok now <code>wait till my master comes</code>\n"
-" ❗️<u><b>Don't spam or else u will be blocked</u></b> ❗️"
- "<a href="https://telegra.ph/file/5807c69bf40fb39621b4a.mp4"> </a>"
+    "`Hey {fname} esta é uma mensagem automatica.`\n"
+    "`Infelizmente meu mestre não aceita mensagem de estranhos.`\n"
+    "`Entre em contato comigo em um grupo ou espere que meu mestre aprove você.`"
+    "<a href="https://telegra.ph/file/313794478c4c9c3a738b0.mp4">"
 )
 blocked_message = bk_blocked_message = "**You were automatically blocked**"
 
