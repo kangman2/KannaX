@@ -23,16 +23,17 @@ PMPERMIT_MSG = {}
 
 pmCounter: Dict[int, int] = {}
 allowAllFilter = filters.create(lambda _, __, ___: Config.ALLOW_ALL_PMS)
-noPmMessage = bk_noPmMessage = f"""
+noPmMessage = bk_noPmMessage = ( f"""
     Hi {fname} , 
-You have landed in @FLAMEPOSEIDON DM.
+You have landed in @fnixdev DM.
 
 <code>I think u forget to read my master's BIO</code>
                       
  Ok now <code>wait till my master comes</code>
  ❗️<u><b>Don't spam or else u will be blocked</u></b> ❗️
- <a href="https://telegra.ph/file/5807c69bf40fb39621b4a.mp4> </a>  
+ <a href="https://telegra.ph/file/5807c69bf40fb39621b4a.mp4"> </a>
 """
+)
 blocked_message = bk_blocked_message = "**You were automatically blocked**"
 
 
