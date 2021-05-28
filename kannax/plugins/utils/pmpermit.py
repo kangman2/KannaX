@@ -27,7 +27,6 @@ noPmMessage = bk_noPmMessage = (
     "`Hey {fname} esta é uma mensagem automatica.`\n"
     "`Infelizmente meu mestre não aceita mensagem de estranhos.`\n"
     "`Entre em contato comigo em um grupo ou espere que meu mestre aprove você.`"
-    "<a href="https://telegra.ph/file/313794478c4c9c3a738b0.mp4">"
 )
 blocked_message = bk_blocked_message = "**You were automatically blocked**"
 
