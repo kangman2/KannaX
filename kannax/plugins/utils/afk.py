@@ -105,7 +105,6 @@ async def handle_afk_incomming(message: Message) -> None:
                 f"◈ I'm **AFK** right now.\n"
                 f"◈ Reason: <code>{REASON}</code>\n"
                 f"◈ Last Seen: `{afk_time} ago`"
-                f"<a href="https://telegra.ph/file/5807c69bf40fb39621b4a.mp4"> </a>\n"
             )
         else:
             out_str = choice(AFK_REASONS)
