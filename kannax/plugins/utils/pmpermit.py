@@ -24,9 +24,9 @@ PMPERMIT_MSG = {}
 pmCounter: Dict[int, int] = {}
 allowAllFilter = filters.create(lambda _, __, ___: Config.ALLOW_ALL_PMS)
 noPmMessage = bk_noPmMessage = (
-    "`Hey {fname} esta é uma mensagem automatica.`\n"
-    "`Infelizmente meu mestre não aceita mensagem de estranhos.\n"
-    "`Entre em contato comigo em um grupo ou espere que meu mestre aprove você.`"
+    "`Hey {mention}. This is  A.I. Security Protocol [⚠️](https://telegra.ph/file/5807c69bf40fb39621b4a.mp4).`\n\n"
+    "`Meu mestre não aceita mensagem de estranhos.\n"
+    "`Espere que ele aprove você.`"
 )
 blocked_message = bk_blocked_message = "**You were automatically blocked**"
 
@@ -295,7 +295,7 @@ async def uninvitedPmHandler(message: Message):
         PMPERMIT_MSG[message.from_user.id] = (
             await message.reply(
                 noPmMessage.format_map(SafeDict(**user_dict))
-                + "\n`- Protected by KannaX`[\u3164](https://telegra.ph/file/5807c69bf40fb39621b4a.mp4)"
+                + "\n`- Protected by KannaX`"
             )
         ).message_id
         await asyncio.sleep(1)
