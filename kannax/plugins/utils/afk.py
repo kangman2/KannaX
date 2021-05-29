@@ -90,7 +90,7 @@ async def handle_afk_incomming(message: Message) -> None:
             if REASON:
                 out_str = (
                 f"◈ I'm **AFK** right now.\n"
-                f"◈ **Last Seen:** `{afk_time} ago`"
+                f"◈ **Last Seen:** `{afk_time} ago`\n"
                 f"◈ **Reason:** <code>{REASON}</code>\n"
                 f"[\u3164](https://telegra.ph/file/fdef5a610a96f3ef5bf13.jpg)"
             )
@@ -105,7 +105,7 @@ async def handle_afk_incomming(message: Message) -> None:
         if REASON:
             out_str = (
                 f"◈ I'm **AFK** right now.\n"
-                f"◈ **Last Seen:** `{afk_time} ago`"
+                f"◈ **Last Seen:** `{afk_time} ago`\n"
                 f"◈ **Reason:** <code>{REASON}</code>\n"
                 f"[\u3164](https://telegra.ph/file/fdef5a610a96f3ef5bf13.jpg)"
             )
