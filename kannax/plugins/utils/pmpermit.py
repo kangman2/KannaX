@@ -24,7 +24,7 @@ PMPERMIT_MSG = {}
 pmCounter: Dict[int, int] = {}
 allowAllFilter = filters.create(lambda _, __, ___: Config.ALLOW_ALL_PMS)
 noPmMessage = bk_noPmMessage = (
-    "`Hey {mention}. This is  A.I. Security Protocol` [⚠️](https://telegra.ph/file/5807c69bf40fb39621b4a.mp4).\n\n"
+    "`Hey {mention}.` ▫️ `This is  A.I. Security Protocol` [▫️](https://telegra.ph/file/5807c69bf40fb39621b4a.mp4).\n\n"
     "`Meu mestre não aceita mensagem de estranhos.`\n"
     "`Espere que ele aprove você.`"
 )
