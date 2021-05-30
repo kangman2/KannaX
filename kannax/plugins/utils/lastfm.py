@@ -9,7 +9,7 @@
 
 import asyncio
 from kannax import Config, Message, get_collection, kannax
-from kannax.lastfm import auth_, info, recs, ri, tglst, user
+from kannax.plugins.utils.lastfm import auth_, info, recs, ri, tglst, user
 
 du = "https://last.fm/user/"
 
