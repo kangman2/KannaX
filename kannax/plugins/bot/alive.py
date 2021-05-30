@@ -230,10 +230,10 @@ class Bot_Alive:
 <a href="https://telegram.dog/fnixdev"><b>KannaX</a> is Up and Running.</b>
 
 ╔═•ೋೋ•═══════════════════╗
-::  👾 KannaX    :   `v{get_version()}`
-::  🐍 Python     :   `v{versions.__python_version__}`
-::  🕔 Uptime    :   `<b>{kannax.uptime}</b>`
-::  <b>{Bot_Alive._get_mode()}</b>  
+:: ▫️ KannaX    :   __v{get_version()}__
+:: ▫️ Python    :   __v{versions.__python_version__}__
+:: ▫️ Uptime    :   __{kannax.uptime}__
+:: ▫️ Mode      :   __{Bot_Alive._get_mode()}__
 ╚══════•ೋೋ•══════════════╝
 """
         return alive_info_
@@ -241,10 +241,10 @@ class Bot_Alive:
     @staticmethod
     def _get_mode() -> str:
         if RawClient.DUAL_MODE:
-            return "↕️  DUAL"
+            return "DUAL"
         if Config.BOT_TOKEN:
-            return "🤖  BOT"
-        return "👤  USER"
+            return "BOT"
+        return "USER"
 
     @staticmethod
     def alive_buttons() -> InlineKeyboardMarkup:
