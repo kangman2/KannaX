@@ -229,12 +229,12 @@ class Bot_Alive:
         alive_info_ = f"""
 <a href="https://t.me/kannaxupdates"><b>KannaX</a> is Up and Running.</b>
 
-◇─◇──◇────★KannaX★─────◇──◇─◇
+◇─◇──◇────★ KannaX ★─────◇──◇─◇
  ▫️ `Version`    :   __v{get_version()}__
- ▫️ `Python`     :   __v{versions.__python_version__}__
- ▫️ `Uptime`    :   __{kannax.uptime}__
- ▫️ `Mode`      :   __{Bot_Alive._get_mode()}__
-◇─◇──◇────★──────★─────◇──◇─◇
+ ▫️ `Python`.      :   __v{versions.__python_version__}__
+ ▫️ `Uptime`.      :   __{kannax.uptime}__
+ ▫️ `Mode`         :   __{Bot_Alive._get_mode()}__
+◇─◇──◇────★ ───── ★─────◇──◇─◇
 """
         return alive_info_
 
