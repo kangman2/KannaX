@@ -180,12 +180,12 @@ if kannax.has_bot:
             start_msg, btns = default_owner_start(from_user)
         else:
             start_msg = f"""
-__Hello__ `{from_user.fname}`,
+        ▫️ `Created by` [fnixdev](https://t.me/fnixdev)__ ▫️
+
+__Hello {from_user.mention},__
 __eu sou KannaChan 🥰 assistente pessoal__
 
-        <b><i>Created by</i> [fnixdev](https://t.me/fnixdev)
-
-My Master : {owner_.flname}</b>
+<b><i>My Master : {owner_.flname}</b>
 """
             if Config.BOT_FORWARDS:
                 start_msg += "<b>\n📌 NOTA:</b>\nVocê pode 📨 <b>enviar mensagens</b> aqui pra falar com <b>My Mestre.</b>"
