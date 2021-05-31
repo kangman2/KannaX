@@ -180,7 +180,7 @@ if kannax.has_bot:
             start_msg, btns = default_owner_start(from_user)
         else:
             start_msg = f"""
-        ▫️ `Created by` [fnixdev](https://t.me/fnixdev)__ ▫️
+        ▫️ `Created by` [fnixdev](https://t.me/fnixdev)__ ▫️\n\n
 
 __Hello {from_user.mention},__
 __eu sou KannaChan 🥰 assistente pessoal__
