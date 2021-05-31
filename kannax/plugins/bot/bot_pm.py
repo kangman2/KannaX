@@ -184,7 +184,6 @@ if kannax.has_bot:
 
 __Hello {from_user.mention},__
 __eu sou KannaChan 🥰 assistente pessoal__
-
 <b><i>My Master : {owner_.flname}</b>
 """
             if Config.BOT_FORWARDS:
