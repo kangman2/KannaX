@@ -17,7 +17,7 @@ CHANNEL = kannax.getCLogger(__name__)
         "header": "Check Updates or Update KannaX",
         "flags": {
             "-pull": "pull updates",
-            "-branch": "Default is -alpha",
+            "-branch": "Default is -master",
         },
         "usage": (
             "{tr}update : check updates from default branch\n"
@@ -41,7 +41,7 @@ async def check_update(message: Message):
     flags = list(message.flags)
     pull_from_repo = False
     push_to_heroku = False
-    branch = "alpha"
+    branch = "master"
     if "pull" in flags:
         pull_from_repo = True
         flags.remove("pull")
