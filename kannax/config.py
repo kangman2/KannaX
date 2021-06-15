@@ -123,7 +123,7 @@ def get_version() -> str:
             if diff:
                 ver = f"{ver}|VULCAN.{len(diff)}"
         else:
-            diff = list(_REPO.iter_commits(f"{Config.UPSTREAM_REMOTE}/alpha..HEAD"))
+            diff = list(_REPO.iter_commits(f"{Config.UPSTREAM_REMOTE}/master..HEAD"))
             if diff:
                 ver = f"{ver}|fork-[X].{len(diff)}"
         branch = f"@{_REPO.active_branch.name}"
@@ -156,4 +156,4 @@ def hbot_version(tag: str) -> str:
                     tag_name = (r_name.json().get("name") or "").replace(" ", "-")
             except JSONDecodeError:
                 pass
-    return f"{tag}|{tag_name or ''}{commits or ''}@{pref_branch or branch or 'alpha'}"
+    return f"{tag}|{tag_name or ''}{commits or ''}@{pref_branch or branch or 'master'}"
