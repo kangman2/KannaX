@@ -58,10 +58,10 @@ _CATEGORY = {
 SAVED_SETTINGS = get_collection("CONFIGS")
 REPO_X = InlineQueryResultArticle(
     title="Repo",
-    input_message_content=InputTextMessageContent("**Here's how to setup KannaX** "),
+    input_message_content=InputTextMessageContent("**Veja como configurar o KannaX** "),
     url="https://github.com/fnixdev/KannaX",
-    description="Setup Your Own",
-    thumb_url="https://telegra.ph/file/33ccbbc344c8d800ece6d.jpg",
+    description="Configure o seu próprio",
+    thumb_url="https://telegra.ph//file/c6d95e3f661dc15bf0df7.jpg",
     reply_markup=InlineKeyboardMarkup(
         [
             [
@@ -88,13 +88,13 @@ async def _init() -> None:
 
 
 @kannax.on_cmd(
-    "help", about={"header": "Guide to use KannaX commands"}, allow_channels=False
+    "help", about={"header": "Guia para usar os comandos KannaX"}, allow_channels=False
 )
 async def helpme(message: Message) -> None:
     plugins = kannax.manager.enabled_plugins
     if not message.input_str:
         out_str = (
-            f"""⚒ <b><u>(<code>{len(plugins)}</code>) Plugin(s) Available</u></b>\n\n"""
+            f"""⚒ <b><u>(<code>{len(plugins)}</code>) Plugin(s) Disponivel</u></b>\n\n"""
         )
         cat_plugins = kannax.manager.get_plugins()
         for cat in sorted(cat_plugins):
@@ -121,7 +121,7 @@ async def helpme(message: Message) -> None:
             )
         ):
             commands = plugins[key].enabled_commands
-            out_str = f"""<b><u>(<code>{len(commands)}</code>) Command(s) Available</u></b>
+            out_str = f"""<b><u>(<code>{len(commands)}</code>) Comando(s) Disponivel</u></b>
 
 🔧 <b>Plugin:</b>  <code>{key}</code>
 📘 <b>Doc:</b>  <code>{plugins[key].doc}</code>\n\n"""
@@ -130,7 +130,7 @@ async def helpme(message: Message) -> None:
                     f"    🤖 <b>cmd(<code>{i}</code>):</b>  <code>{cmd.name}</code>\n"
                     f"    📚 <b>info:</b>  <i>{cmd.doc}</i>\n\n"
                 )
-            out_str += f"""📕 <b>Usage:</b>  <code>{Config.CMD_TRIGGER}help [command_name]</code>"""
+            out_str += f"""📕 <b>Uso:</b>  <code>{Config.CMD_TRIGGER}help [command_name]</code>"""
         else:
             commands = kannax.manager.enabled_commands
             key = key.lstrip(Config.CMD_TRIGGER)
@@ -140,7 +140,7 @@ async def helpme(message: Message) -> None:
             elif key_ in commands:
                 out_str = f"<code>{key_}</code>\n\n{commands[key_].about}"
             else:
-                out_str = f"<i>No Module or Command Found for</i>: <code>{message.input_str}</code>"
+                out_str = f"<i>Nenhum módulo ou comando encontrado para</i>: <code>{message.input_str}</code>"
     await message.edit(
         out_str, del_in=0, parse_mode="html", disable_web_page_preview=True
     )
@@ -159,16 +159,16 @@ if kannax.has_bot:
                 try:
                     await func(c_q)
                 except MessageNotModified:
-                    await c_q.answer("Nothing Found to Refresh 🤷‍♂️", show_alert=True)
+                    await c_q.answer("Nada foi encontrado para atualizar 🤷‍♂️", show_alert=True)
                 except MessageIdInvalid:
                     await c_q.answer(
-                        "Sorry, I Don't Have Permissions to edit this 😔",
+                        "Não tenho permissão para editar isto 😔",
                         show_alert=True,
                     )
             else:
                 user_dict = await kannax.bot.get_user_dict(Config.OWNER_ID[0])
                 await c_q.answer(
-                    f"Only {user_dict['flname']} Can Access this...! Build Your KannaX",
+                    f"Apenas {user_dict['flname']} Pode acessar isso ...! Instale o KannaX",
                     show_alert=True,
                 )
 
@@ -213,7 +213,7 @@ if kannax.has_bot:
             await callback_query.answer("you are in main menu", show_alert=True)
             return
         if len(pos_list) == 2:
-            text = " 𝐊𝐀𝐍𝐍𝐀𝐗 𝐌𝐀𝐈𝐍 𝐌𝐄𝐍𝐔"
+            text = " [̲̅K̲̅α̲̅и̲̅и̲̅α̲̅X̲̅ ̲̅м̲̅є̲̅и̲̅υ̲̅] "
             buttons = main_menu_buttons()
         elif len(pos_list) == 3:
             text, buttons = category_data(cur_pos)
@@ -265,7 +265,7 @@ if kannax.has_bot:
     @check_owner
     async def callback_mm(callback_query: CallbackQuery):
         await callback_query.edit_message_text(
-            " 𝐊𝐀𝐍𝐍𝐀𝐗 𝐌𝐀𝐈𝐍 𝐌𝐄𝐍𝐔 ",
+            " [̲̅K̲̅α̲̅и̲̅и̲̅α̲̅X̲̅ ̲̅м̲̅є̲̅и̲̅υ̲̅] ",
             reply_markup=InlineKeyboardMarkup(main_menu_buttons()),
         )
 
@@ -274,7 +274,7 @@ if kannax.has_bot:
     async def callback_chgclnt(callback_query: CallbackQuery):
         if not RawClient.DUAL_MODE:
             return await callback_query.answer(
-                "you using [BOT MODE], can't change client.", show_alert=True
+                "você está usando [BOT MODE], não pode mudar o cliente.", show_alert=True
             )
         if Config.USE_USER_FOR_CLIENT_CHECKS:
             Config.USE_USER_FOR_CLIENT_CHECKS = False
@@ -328,11 +328,11 @@ if kannax.has_bot:
             pairs = pairs[current_page * rows : (current_page + 1) * rows] + [
                 [
                     InlineKeyboardButton(
-                        "⏪ Previous",
+                        "⏪ Anterior",
                         callback_data=f"({cur_pos})prev({current_page})".encode(),
                     ),
                     InlineKeyboardButton(
-                        "⏩ Next",
+                        "⏩ Proximo",
                         callback_data=f"({cur_pos})next({current_page})".encode(),
                     ),
                 ],
@@ -353,21 +353,21 @@ if kannax.has_bot:
         if cur_pos != "mm":
             tmp_btns.append(
                 InlineKeyboardButton(
-                    "⬅ Back", callback_data=f"back({cur_pos})".encode()
+                    "⬅ Voltar", callback_data=f"back({cur_pos})".encode()
                 )
             )
             if len(cur_pos.split("|")) > 2:
-                tmp_btns.append(InlineKeyboardButton("🖥 Main Menu", callback_data="mm"))
+                tmp_btns.append(InlineKeyboardButton("🖥 Menu Principal", callback_data="mm"))
                 tmp_btns.append(
                     InlineKeyboardButton(
-                        "🔄 Refresh", callback_data=f"refresh({cur_pos})".encode()
+                        "🔄 Atualizar", callback_data=f"refresh({cur_pos})".encode()
                     )
                 )
         else:
             cur_clnt = "👤 USER" if Config.USE_USER_FOR_CLIENT_CHECKS else "⚙️ BOT"
             tmp_btns.append(
                 InlineKeyboardButton(
-                    f"🔩 Client for Checks and Sudos : {cur_clnt}",
+                    f"🔩 Client para Checks e Sudos : {cur_clnt}",
                     callback_data="chgclnt",
                 )
             )
@@ -378,7 +378,7 @@ if kannax.has_bot:
         plugins = kannax.manager.get_all_plugins()[pos_list[1]]
         text = (
             f"**(`{len(plugins)}`) Plugin(s) Under : "
-            f"`{_CATEGORY.get(pos_list[1], '📁')} {pos_list[1]}`  Category**"
+            f"`{_CATEGORY.get(pos_list[1], '📁')} {pos_list[1]}`  Categoria**"
         )
         buttons = parse_buttons(0, "|".join(pos_list[:2]), lambda x: f"🔹 {x}", plugins)
         return text, buttons
@@ -388,39 +388,39 @@ if kannax.has_bot:
         plg = kannax.manager.plugins[pos_list[2]]
         text = f"""🔹 <u><b>Plugin Status<b></u> 🔹
 
-🎭 **Category** : `{pos_list[1]}`
-🔖 **Name** : `{plg.name}`
+🎭 **Categoria** : `{pos_list[1]}`
+🔖 **Nome** : `{plg.name}`
 📝 **Doc** : `{plg.doc}`
-◾️ **Commands** : `{len(plg.commands)}`
+◾️ **Comandos** : `{len(plg.commands)}`
 ⚖ **Filters** : `{len(plg.filters)}`
-✅ **Loaded** : `{plg.is_loaded}`
-➕ **Enabled** : `{plg.is_enabled}`
+✅ **Carregado** : `{plg.is_loaded}`
+➕ **Habilitado** : `{plg.is_enabled}`
 """
         tmp_btns = []
         if plg.is_loaded:
             tmp_btns.append(
                 InlineKeyboardButton(
-                    "❎ Unload",
+                    "❎ Descarregar",
                     callback_data=f"unload({'|'.join(pos_list[:3])})".encode(),
                 )
             )
         else:
             tmp_btns.append(
                 InlineKeyboardButton(
-                    "✅ Load", callback_data=f"load({'|'.join(pos_list[:3])})".encode()
+                    "✅ Carregar", callback_data=f"load({'|'.join(pos_list[:3])})".encode()
                 )
             )
         if plg.is_enabled:
             tmp_btns.append(
                 InlineKeyboardButton(
-                    "➖ Disable",
+                    "➖ Desativar",
                     callback_data=f"disable({'|'.join(pos_list[:3])})".encode(),
                 )
             )
         else:
             tmp_btns.append(
                 InlineKeyboardButton(
-                    "➕ Enable",
+                    "➕ Habilitar",
                     callback_data=f"enable({'|'.join(pos_list[:3])})".encode(),
                 )
             )
@@ -439,18 +439,18 @@ if kannax.has_bot:
         flts = {flt.name: flt for flt in plg.commands + plg.filters}
         flt = flts[pos_list[-1]]
         flt_data = f"""
-🔖 **Name** : `{flt.name}`
+🔖 **Nome** : `{flt.name}`
 📝 **Doc** : `{flt.doc}`
 🤖 **Via Bot** : `{flt.allow_via_bot}`
-✅ **Loaded** : `{flt.is_loaded}`
-➕ **Enabled** : `{flt.is_enabled}`"""
+✅ **Carregado** : `{flt.is_loaded}`
+➕ **Habilitado** : `{flt.is_enabled}`"""
         if hasattr(flt, "about"):
-            text = f"""<b><u>Command Status</u></b>
+            text = f"""<b><u>Status do Comando</u></b>
 {flt_data}
 {flt.about}
 """
         else:
-            text = f"""⚖ <b><u>Filter Status</u></b> ⚖
+            text = f"""⚖ <b><u>Status do filtro</u></b> ⚖
 {flt_data}
 """
         buttons = default_buttons(cur_pos)
@@ -458,25 +458,25 @@ if kannax.has_bot:
         if flt.is_loaded:
             tmp_btns.append(
                 InlineKeyboardButton(
-                    "❎ Unload", callback_data=f"unload({cur_pos})".encode()
+                    "❎ Descarregar", callback_data=f"unload({cur_pos})".encode()
                 )
             )
         else:
             tmp_btns.append(
                 InlineKeyboardButton(
-                    "✅ Load", callback_data=f"load({cur_pos})".encode()
+                    "✅ Carregar", callback_data=f"load({cur_pos})".encode()
                 )
             )
         if flt.is_enabled:
             tmp_btns.append(
                 InlineKeyboardButton(
-                    "➖ Disable", callback_data=f"disable({cur_pos})".encode()
+                    "➖ Desativar", callback_data=f"disable({cur_pos})".encode()
                 )
             )
         else:
             tmp_btns.append(
                 InlineKeyboardButton(
-                    "➕ Enable", callback_data=f"enable({cur_pos})".encode()
+                    "➕ Habilitar", callback_data=f"enable({cur_pos})".encode()
                 )
             )
         buttons = [tmp_btns] + buttons
@@ -508,7 +508,7 @@ if kannax.has_bot:
                 results.append(
                     InlineQueryResultPhoto(
                         photo_url="https://coverfiles.alphacoders.com/123/123388.png",
-                        caption="Hey I solved **fnixdev**",
+                        caption="Ei eu resolvi **fnixdev**",
                         reply_markup=InlineKeyboardMarkup(owner),
                     )
                 )
@@ -517,17 +517,17 @@ if kannax.has_bot:
                 buttons = [
                     [
                         InlineKeyboardButton(
-                            text="Yes I'm 18+", callback_data="age_verification_true"
+                            text="Sim, tenho mais de 18 anos", callback_data="age_verification_true"
                         ),
                         InlineKeyboardButton(
-                            text="No I'm Not", callback_data="age_verification_false"
+                            text="Não, eu não sou", callback_data="age_verification_false"
                         ),
                     ]
                 ]
                 results.append(
                     InlineQueryResultPhoto(
                         photo_url="https://i.imgur.com/Zg58iXc.jpg",
-                        caption="**ARE YOU OLD ENOUGH FOR THIS ?**",
+                        caption="**VOCÊ ESTÁ VELHO O SUFICIENTE PARA ISSO?**",
                         reply_markup=InlineKeyboardMarkup(buttons),
                     )
                 )
@@ -549,9 +549,9 @@ if kannax.has_bot:
                 except ValueError:
                     results.append(
                         InlineQueryResultArticle(
-                            title="Reddit Api is Down !",
+                            title="Reddit Api está desativado!",
                             input_message_content=InputTextMessageContent(
-                                "**Error Code: Status != 200**"
+                                "**Código de erro: Status != 200**"
                             ),
                             thumb_url="https://i.imgur.com/7a7aPVa.png",
                         )
@@ -567,7 +567,7 @@ if kannax.has_bot:
                                 input_message_content=InputTextMessageContent(
                                     f"**Error Code: {code}**\n`{code_message}`"
                                 ),
-                                description="Enter A Valid Subreddit Name !",
+                                description="Digite um nome de subreddit válido!",
                                 thumb_url="https://i.imgur.com/7a7aPVa.png",
                             )
                         )
@@ -586,13 +586,13 @@ if kannax.has_bot:
                                 captionx += f"↕️ <code>{upvote}</code>\n"
                                 thumbnail = reddit_thumb_link(post["preview"])
                                 if post["spoiler"]:
-                                    captionx += "⚠️ Post marked as SPOILER\n"
+                                    captionx += "⚠️ Post marcado como SPOILER\n"
                                 if post["nsfw"]:
-                                    captionx += "🔞 Post marked Adult \n"
+                                    captionx += "🔞 Post marcado como Adulto \n"
                                 buttons = [
                                     [
                                         InlineKeyboardButton(
-                                            f"Source: r/{subreddit}", url=postlink
+                                            f"Fonte: r/{subreddit}", url=postlink
                                         )
                                     ]
                                 ]
@@ -618,7 +618,7 @@ if kannax.has_bot:
                         results=results,
                         cache_time=1,
                         is_gallery=bool_is_gallery,
-                        switch_pm_text="Available Commands",
+                        switch_pm_text="Comandos Disponíveis",
                         switch_pm_parameter="inline",
                     )
                     return
@@ -699,8 +699,8 @@ if kannax.has_bot:
             if string == "geass":
                 results.append(
                     InlineQueryResultAnimation(
-                        animation_url="https://i.imgur.com/DeZHcRK.gif",
-                        caption="To defeat evil, I must become a greater evil",
+                        animation_url="https://telegra.ph/file/7b2cca848cc29586bd70b.png",
+                        caption="Para derrotar o mal, devo me tornar um mal maior",
                     )
                 )
 
@@ -852,11 +852,11 @@ if kannax.has_bot:
                 if not os.path.exists(f"{Config.CACHE_PATH}/spoiler_db.json"):
                     results.append(
                         InlineQueryResultArticle(
-                            title="No Spoiler Found",
+                            title="Nenhum spoiler encontrado",
                             input_message_content=InputTextMessageContent(
-                                "No Spoiler Found !\nLet's Add Some 😈"
+                                "Nenhum spoiler encontrado !\nVamos adicionar alguns 😈"
                             ),
-                            description="See .help spoiler for more info",
+                            description="Veja .help para mais informações",
                         )
                     )
                 else:
@@ -864,15 +864,15 @@ if kannax.has_bot:
                     if len(str_y) == 2:
                         link = f"https://t.me/{bot_name}?start=spoiler_{str_y[1]}"
                         buttons = [
-                            [InlineKeyboardButton(text="View Spoiler", url=link)]
+                            [InlineKeyboardButton(text="Ver Spoiler", url=link)]
                         ]
                         results.append(
                             InlineQueryResultArticle(
                                 title="Spoiler",
                                 input_message_content=InputTextMessageContent(
-                                    "<b>Click To View The Spoiler !</b>"
+                                    "<b>Clique para ver o spoiler !</b>"
                                 ),
-                                description="Click To Send",
+                                description="Clique para enviar",
                                 thumb_url="https://telegra.ph/file/ee3a6439494463acd1a3a.jpg",
                                 reply_markup=InlineKeyboardMarkup(buttons),
                             )
@@ -886,7 +886,7 @@ if kannax.has_bot:
                                 buttons = [
                                     [
                                         InlineKeyboardButton(
-                                            text="View Spoiler",
+                                            text="Ver Spoiler",
                                             url=f"https://t.me/{bot_name}?start=spoiler_{spoilerr}",
                                         )
                                     ]
@@ -899,9 +899,9 @@ if kannax.has_bot:
                                     InlineQueryResultArticle(
                                         title=f"#{numm}  Spoiler",
                                         input_message_content=InputTextMessageContent(
-                                            "<b>Click To View The Spoiler !</b>"
+                                            "<b>Clique para ver o spoiler !</b>"
                                         ),
-                                        description=f"Created At: {savetime}",
+                                        description=f"Criado em: {savetime}",
                                         thumb_url="https://telegra.ph/file/ee3a6439494463acd1a3a.jpg",
                                         reply_markup=InlineKeyboardMarkup(buttons),
                                     )
@@ -1019,7 +1019,7 @@ if kannax.has_bot:
                 await inline_query.answer(
                     results=results,
                     cache_time=1,
-                    switch_pm_text="Available Commands",
+                    switch_pm_text="Comandos Disponiveis",
                     switch_pm_parameter="inline",
                 )
                 return
@@ -1057,17 +1057,17 @@ if kannax.has_bot:
                     ujson.dump(view_data, r, indent=4)
                 if str_x[0].lower() == "secret":
                     c_data = f"secret_{key_}"
-                    i_m_content = f"📩 <b>Secret Msg</b> for <b>{r_name}</b>. Only he/she can open it."
-                    i_l_des = f"Send Secret Message to: {r_name}"
-                    title = "Send A Secret Message"
-                    thumb_img = "https://i.imgur.com/c5pZebC.png"
+                    i_m_content = f"📩 <b>Mensagem Secreta</b> para <b>{r_name}</b>. Só ele/ela pode abrir."
+                    i_l_des = f"Enviar mensagem secreta para: {r_name}"
+                    title = "Enviar mensagem secreta"
+                    thumb_img = "https://telegra.ph/file/8db040d03e6c5ba2cfd08.png"
                 else:
                     c_data = f"troll_{key_}"
-                    i_m_content = f"😈 Only <b>{r_name}</b> can't view this message. UwU"
-                    i_l_des = f"Message Hidden from {r_name}"
+                    i_m_content = f"😈 Apenas <b>{r_name}</b> não pode ver esta mensagem. UwU"
+                    i_l_des = f"Mensagem Oculta de {r_name}"
                     title = "😈 Troll"
                     thumb_img = "https://i.imgur.com/0vg5B0A.png"
-                buttons = [[InlineKeyboardButton("🔐  SHOW", callback_data=c_data)]]
+                buttons = [[InlineKeyboardButton("🔐  Mostrar", callback_data=c_data)]]
                 results.append(
                     InlineQueryResultArticle(
                         title=title,
@@ -1121,7 +1121,7 @@ if kannax.has_bot:
                         InlineQueryResultPhoto(
                             photo_url=photo,
                             title=link,
-                            description="⬇️ Click to Download",
+                            description="⬇️ Clique para fazer o download",
                             caption=caption,
                             reply_markup=buttons,
                         )
@@ -1131,18 +1131,18 @@ if kannax.has_bot:
                         InlineQueryResultArticle(
                             title="not Found",
                             input_message_content=InputTextMessageContent(
-                                f"No Results found for `{str_y[1]}`"
+                                f"Nenhum resultado encontrado para `{str_y[1]}`"
                             ),
                             description="INVALID",
                         )
                     )
 
             MAIN_MENU = InlineQueryResultArticle(
-                title="Main Menu",
-                input_message_content=InputTextMessageContent(" 𝐊𝐀𝐍𝐍𝐀𝐗 𝐌𝐀𝐈𝐍 𝐌𝐄𝐍𝐔 "),
+                title="MENU",
+                input_message_content=InputTextMessageContent(" [̲̅K̲̅α̲̅и̲̅и̲̅α̲̅X̲̅ ̲̅м̲̅є̲̅и̲̅υ̲̅] "),
                 url="https://github.com/fnixdev/KannaX",
-                description="KannaX Main Menu",
-                thumb_url="https://telegra.ph/file/33ccbbc344c8d800ece6d.jpg",
+                description="KannaX Menu",
+                thumb_url="https://telegra.ph//file/c6d95e3f661dc15bf0df7.jpg",
                 reply_markup=InlineKeyboardMarkup(main_menu_buttons()),
             )
             results.append(MAIN_MENU)
@@ -1150,7 +1150,7 @@ if kannax.has_bot:
                 await inline_query.answer(
                     results=results,
                     cache_time=1,
-                    switch_pm_text="Available Commands",
+                    switch_pm_text="Comandos Disponiveis",
                     switch_pm_parameter="inline",
                 )
         else:
@@ -1159,6 +1159,6 @@ if kannax.has_bot:
             await inline_query.answer(
                 results=results,
                 cache_time=1,
-                switch_pm_text=f"This bot is only for {owner_name}",
+                switch_pm_text=f"Este bot é apenas para {owner_name}",
                 switch_pm_parameter="start",
             )
