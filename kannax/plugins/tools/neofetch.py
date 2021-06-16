@@ -42,12 +42,12 @@ async def neo_image():
     font_color = (255, 42, 38)  # Red
     white = (255, 255, 255)
     if "Debian" in neofetch:
-        base_pic = "https://telegra.ph/file/9b2a31a6e4ec6c8628675.jpg"
+        base_pic = "https://telegra.ph/file/1f62cbef3fe8e24afc6f7.jpg"
     elif "Kali" in neofetch:
-        base_pic = "https://telegra.ph/file/9b2a31a6e4ec6c8628675.jpg"
+        base_pic = "https://i.imgur.com/iBJxExq.jpg"
         font_color = (87, 157, 255)  # Blue
     else:
-        base_pic = "https://telegra.ph/file/9b2a31a6e4ec6c8628675.jpg"
+        base_pic = "https://telegra.ph/file/f3191b7ecdf13867788c2.jpg"
     font_url = (
         "https://raw.githubusercontent.com/code-rgb/AmongUs/master/FiraCode-Regular.ttf"
     )
@@ -76,5 +76,5 @@ async def neo_image():
     new_pic = BytesIO()
     photo = photo.resize(photo.size, Image.ANTIALIAS)
     photo.save(new_pic, format="JPEG")
-    new_pic.name = "KannaXNeoFetch.jpg"
+    new_pic.name = "NeoFetch.jpg"
     return new_pic
