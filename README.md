@@ -5,6 +5,7 @@
 <a href="https://github.com/fnixdev"><img title="Author" src="https://img.shields.io/badge/Author-fnixdev-red.svg?style=for-the-badge&logo=github"></a>
 </p>
 <p align="center">
+<a href="https://github.com/fnixdev/KannaX/issues"><img alt="GitHub issues" src="https://img.shields.io/github/issues/fnixdev/KannaX?style=flat-square"></a>
 <a href="https://github.com/fnixdev/KannaX/blob/master/LICENSE"><img alt="GitHub license" src="https://img.shields.io/github/license/fnixdev/KannaX?style=flat-square"></a>
 <a href="https://github.com/fnixdev/KannaX/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/fnixdev/KannaX?style=flat-square"></a>
 <a href="https://github.com/fnixdev/KannaX/network"><img alt="GitHub forks" src="https://img.shields.io/github/forks/fnixdev/KannaX?style=flat-square"></a>
