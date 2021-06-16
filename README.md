@@ -26,13 +26,51 @@
 /**
 ```
 ## Requirements 
-* Python 3.8 or Higher
+* Python 3.8 ou Superior
 * Telegram [API Keys](https://my.telegram.org/apps)
 * Google Drive [API Keys](https://console.developers.google.com/)
 * MongoDB [Database URL](https://cloud.mongodb.com/)
 
-## Como instalar
-* Você pode ver o Tutorial Completo [Clicando Aqui](https://fnixdev.github.io/tutorial.html)
+## Instalar
+
+### Pelo Heroku
+<p><a href = "https://heroku.com/deploy?template=https://github.com/fnixdev/KannaX-Deploy"><img src="https://www.herokucdn.com/deploy/button.svg" alt="MyGpac"> </a></p>
+
+###Instalando com Metodo Tradicional
+<p><strong>1. Instalando os pacotes</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo apt install tree wget2 p7zip-full jq ffmpeg wget git
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo apt install ./google-chrome-stable_current_amd64.deb
+</code></pre></div></div>
+
+<p><strong>2. Clone o Repositorio</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git clone https://github.com/fnixdev/KannaX.git <span class="o">&amp;&amp;</span> <span class="nb">cd </span>KannaX
+</code></pre></div></div>
+
+<p><strong>3. Instale os requisitos</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>pip <span class="nb">install</span> <span class="nt">-r</span> requirements.txt
+</code></pre></div></div>
+
+<p><strong>4. Crie config.env como config.env.sample e preencha as Vars</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cp </span>config.env.sample config.env
+</code></pre></div></div>
+
+<p><strong>5. Obtenha a Session String e adicione-a ao config.env</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>bash genStr
+</code></pre></div></div>
+<p>Ou voce pode usar <a href="https://t.me/genStr_bot">@genStr_bot</a> para obter a string.</p>
+
+<p><strong>6. Finalmente execute o KannaX</strong></p>
+
 
 ## String Session
 **VAR ->** `HU_STRING_SESSION`
