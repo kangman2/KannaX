@@ -81,10 +81,10 @@ async def check_update(message: Message):
         return
     if pull_from_repo:
         if out:
-            await message.edit(f"`Nova atualização encontrada para [{branch}], Now pulling...`")
+            await message.edit(f"`Nova atualização encontrada para [{branch}], Atualizando...`")
             await _pull_from_repo(repo, branch)
             await CHANNEL.log(
-                f"**Atualização PULADA de [{branch}]:\n\n📄 CHANGELOG 📄**\n\n{out}"
+                f"**Atualização concluida em [{branch}]:\n\n📄 CHANGELOG 📄**\n\n{out}"
             )
             if not push_to_heroku:
                 await message.edit(
