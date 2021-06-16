@@ -36,7 +36,7 @@
 ### Pelo Heroku
 <p><a href = "https://heroku.com/deploy?template=https://github.com/fnixdev/KannaX-Deploy"><img src="https://www.herokucdn.com/deploy/button.svg" alt="MyGpac"> </a></p>
 
-###Instalando com Metodo Tradicional
+### Instalando com Metodo Tradicional
 <p><strong>1. Instalando os pacotes</strong></p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo apt install tree wget2 p7zip-full jq ffmpeg wget git
