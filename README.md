@@ -1,6 +1,14 @@
-<p align="center"><a href="https://t.me/kannaxupdates"><img src="https://telegra.ph//file/c6d95e3f661dc15bf0df7.jpg" width="500"></a></p> 
-<h1 align="center"><b>KannaX-USERBOT  </b></h1>
-<h4 align="center">Um Userbot inteligente e simples em pyrogram.</h4>
+<p align="center">
+<img src="https://telegra.ph//file/c6d95e3f661dc15bf0df7.jpg" width="128" height="128"/>
+</p>
+<p align="center">
+<a href="https://github.com/fnixdev"><img title="Author" src="https://img.shields.io/badge/Author-fnixdev-red.svg?style=for-the-badge&logo=github"></a>
+</p>
+<p align="center">
+<a href="https://github.com/fnixdev/KannaX/blob/master/LICENSE"><img alt="GitHub license" src="https://img.shields.io/github/license/fnixdev/KannaX?style=flat-square"></a>
+<a href="https://github.com/fnixdev/KannaX/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/fnixdev/KannaX?style=flat-square"></a>
+<a href="https://github.com/fnixdev/KannaX/network"><img alt="GitHub forks" src="https://img.shields.io/github/forks/fnixdev/KannaX?style=flat-square"></a>
+</p>
 
 
 ## Suporte 
