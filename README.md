@@ -67,13 +67,15 @@
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>bash genStr
 </code></pre></div></div>
-<p>Ou voce pode usar <a href="https://t.me/genStr_bot">@genStr_bot</a> para obter a string.</p>
+<p>Ou voce pode usar <a href="https://replit.com/@fnixdev/StringSessionKX">REPL</a> para obter a string.</p>
 
 <p><strong>6. Finalmente execute o KannaX</strong></p>
 
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>bash run
+</code></pre></div></div>
 
 ## String Session
-**VAR ->** `HU_STRING_SESSION`
+- VAR ->** `HU_STRING_SESSION`
 
 #### Pelo HEROKU
 - [Abra seu app heroku](https://dashboard.heroku.com/apps/) clique em **more** -> **run console** e digite `bash genStr` e clique em **run**.
