@@ -14,15 +14,15 @@ from kannax.utils import runcmd
 @kannax.on_cmd(
     "neofetch",
     about={
-        "header": "Neofetch is a command-line system information tool",
-        "description": "displays information about your operating system, software and hardware in an aesthetic and visually pleasing way.",
+        "header": "Neofetch é uma ferramenta de informação do sistema de linha de comando",
+        "description": "exibe informações sobre seu sistema operacional, software e hardware de uma forma estética e visualmente agradável.",
         "usage": " {tr}neofetch",
-        "flags": {"-img": "To Get output as Image"},
+        "flags": {"-img": "Para obter como imagem"},
         "examples": ["{tr}neofetch", "{tr}neofetch -img"],
     },
 )
 async def neofetch_(message: Message):
-    await message.edit("Getting System Info ...")
+    await message.edit("Obtendo informações do sistema ...")
     reply = message.reply_to_message
     reply_id = reply.message_id if reply else None
     if "-img" in message.flags:
@@ -42,12 +42,12 @@ async def neo_image():
     font_color = (255, 42, 38)  # Red
     white = (255, 255, 255)
     if "Debian" in neofetch:
-        base_pic = "https://telegra.ph/file/1f62cbef3fe8e24afc6f7.jpg"
+        base_pic = "https://telegra.ph/file/9b2a31a6e4ec6c8628675.jpg"
     elif "Kali" in neofetch:
-        base_pic = "https://i.imgur.com/iBJxExq.jpg"
+        base_pic = "https://telegra.ph/file/9b2a31a6e4ec6c8628675.jpg"
         font_color = (87, 157, 255)  # Blue
     else:
-        base_pic = "https://telegra.ph/file/f3191b7ecdf13867788c2.jpg"
+        base_pic = "https://telegra.ph/file/9b2a31a6e4ec6c8628675.jpg"
     font_url = (
         "https://raw.githubusercontent.com/code-rgb/AmongUs/master/FiraCode-Regular.ttf"
     )
@@ -76,5 +76,5 @@ async def neo_image():
     new_pic = BytesIO()
     photo = photo.resize(photo.size, Image.ANTIALIAS)
     photo.save(new_pic, format="JPEG")
-    new_pic.name = "NeoFetch.jpg"
+    new_pic.name = "KannaXNeoFetch.jpg"
     return new_pic
