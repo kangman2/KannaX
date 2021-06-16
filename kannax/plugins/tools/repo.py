@@ -9,7 +9,7 @@
 from kannax import Config, Message, kannax
 
 
-@kannax.on_cmd("repo", about={"header": "get repo link and details"})
+@kannax.on_cmd("repo", about={"header": "link e detalhes do repositório"})
 async def see_repo(message: Message):
     """see repo"""
     output = f"• **repo** : [KannaX]({Config.UPSTREAM_REPO})"
