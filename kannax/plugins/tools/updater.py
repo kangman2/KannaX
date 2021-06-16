@@ -14,28 +14,28 @@ CHANNEL = kannax.getCLogger(__name__)
 @kannax.on_cmd(
     "update",
     about={
-        "header": "Check Updates or Update KannaX",
+        "header": "Verifique as atualizações ou atualize o KannaX",
         "flags": {
-            "-pull": "pull updates",
-            "-branch": "Default is -master",
+            "-pull": "puxar atualizações",
+            "-branch": "Padrão é -master",
         },
-        "usage": (
-            "{tr}update : check updates from default branch\n"
-            "{tr}update -[branch_name] : check updates from any branch\n"
-            "add -pull if you want to pull updates\n"
+        "uso": (
+            "{tr}update : verificar atualizações do branch padrão\n"
+            "{tr}update -[branch_name] : verifique as atualizações de qualquer branch\n"
+            "use -pull para atualizar\n"
         ),
-        "examples": "{tr}update -pull",
+        "exemplos": "{tr}update -pull",
     },
     del_pre=True,
     allow_channels=False,
 )
 async def check_update(message: Message):
-    """check or do updates"""
-    await message.edit("`Checking for updates, please wait....`")
+    """verificar ou fazer atualizações"""
+    await message.edit("`Verificando atualizações, por favor aguarde....`")
     if Config.HEROKU_ENV:
         await message.edit(
-            "**Heroku App detected !**, Updates have been disabled for Safety.\n"
-            "Your Bot Will Auto Update when Heroku restart"
+            "**Heroku App detectado !**, As atualizações foram desativadas por segurança.\n"
+            "Seu bot será atualizado automaticamente quando o Heroku reiniciar"
         )
         return
     flags = list(message.flags)
@@ -47,7 +47,7 @@ async def check_update(message: Message):
         flags.remove("pull")
     if "push" in flags:
         if not Config.HEROKU_APP:
-            await message.err("HEROKU APP : could not be found !")
+            await message.err("HEROKU APP : Não pode ser achado !")
             return
         # push_to_heroku = True
         # flags.remove("push")
@@ -55,7 +55,7 @@ async def check_update(message: Message):
         branch = flags[0]
     repo = Repo()
     if branch not in repo.branches:
-        await message.err(f"invalid branch name : {branch}")
+        await message.err(f"nome da branch inválido : {branch}")
         return
     try:
         out = _get_updates(repo, branch)
@@ -71,25 +71,25 @@ async def check_update(message: Message):
     if not (pull_from_repo or push_to_heroku):
         if out:
             change_log = (
-                f"**New UPDATE available for [{branch}]:\n\n📄 CHANGELOG 📄**\n\n"
+                f"**Novo UPDATE disponível para [{branch}]:\n\n📄 CHANGELOG 📄**\n\n"
             )
             await message.edit_or_send_as_file(
                 change_log + out, disable_web_page_preview=True
             )
         else:
-            await message.edit(f"**KannaX is up-to-date with [{branch}]**", del_in=5)
+            await message.edit(f"**KannaX esta atualizado em [{branch}]**", del_in=5)
         return
     if pull_from_repo:
         if out:
-            await message.edit(f"`New update found for [{branch}], Now pulling...`")
+            await message.edit(f"`Nova atualização encontrada para [{branch}], Now pulling...`")
             await _pull_from_repo(repo, branch)
             await CHANNEL.log(
-                f"**PULLED update from [{branch}]:\n\n📄 CHANGELOG 📄**\n\n{out}"
+                f"**Atualização PULADA de [{branch}]:\n\n📄 CHANGELOG 📄**\n\n{out}"
             )
             if not push_to_heroku:
                 await message.edit(
-                    "**KannaX Successfully Updated!**\n"
-                    "`Now restarting... Wait for a while!`",
+                    "**KannaX Atualizado com Sucesso!**\n"
+                    "`Reiniciando... Aguarde um pouco!`",
                     del_in=3,
                 )
                 asyncio.get_event_loop().create_task(kannax.restart(True))
@@ -98,14 +98,14 @@ async def check_update(message: Message):
         else:
             active = repo.active_branch.name
             if active == branch:
-                await message.err(f"already in [{branch}]!")
+                await message.err(f"ja esta em [{branch}]!")
                 return
             await message.edit(
-                f"`Moving HEAD from [{active}] >>> [{branch}] ...`", parse_mode="md"
+                f"`Movendo HEAD de [{active}] >>> [{branch}] ...`", parse_mode="md"
             )
             await _pull_from_repo(repo, branch)
-            await CHANNEL.log(f"`Moved HEAD from [{active}] >>> [{branch}] !`")
-            await message.edit("`Now restarting... Wait for a while!`", del_in=3)
+            await CHANNEL.log(f"`Moveu HEAD de [{active}] >>> [{branch}] !`")
+            await message.edit("`Reiniciando... Aguarde um pouco!`", del_in=3)
             asyncio.get_event_loop().create_task(kannax.restart())
     if push_to_heroku:
         await _push_to_heroku(message, repo, branch)
@@ -130,10 +130,10 @@ async def _pull_from_repo(repo: Repo, branch: str) -> None:
 
 async def _push_to_heroku(msg: Message, repo: Repo, branch: str) -> None:
     sent = await msg.edit(
-        f"`Now pushing updates from [{branch}] to heroku...\n"
-        "this will take upto 5 min`\n\n"
-        f"* **Restart** after 5 min using `{Config.CMD_TRIGGER}restart -h`\n\n"
-        "* After restarted successfully, check updates again :)"
+        f"`Agora empurrando atualizações de [{branch}] para o heroku...\n"
+        "isso vai demorar até 5 min`\n\n"
+        f"* **Reiniciar** após 5 min usando `{Config.CMD_TRIGGER}restart -h`\n\n"
+        "* Depois de reiniciado com sucesso, verifique as atualizações novamente :)"
     )
     try:
         await _heroku_helper(sent, repo, branch)
@@ -141,7 +141,7 @@ async def _push_to_heroku(msg: Message, repo: Repo, branch: str) -> None:
         LOG.exception(g_e)
     else:
         await sent.edit(
-            f"**HEROKU APP : {Config.HEROKU_APP.name} is up-to-date with [{branch}]**"
+            f"**HEROKU APP : {Config.HEROKU_APP.name} esta atualizado em [{branch}]**"
         )
 
 
