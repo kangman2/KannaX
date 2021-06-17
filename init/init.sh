@@ -19,9 +19,9 @@ trap 'echo hi' USR1
 initKannaX() {
     printLogo
     assertPrerequisites
-    sendMessage "Initializing KannaX ..."
+    sendMessage "Inicializando KannaX ..."
     assertEnvironment
-    editLastMessage "Starting KannaX ..."
+    editLastMessage "Iniciando KannaX ..."
     printLine
 }
 
@@ -31,18 +31,18 @@ startKannaX() {
 }
 
 stopKannaX() {
-    sendMessage "Exiting KannaX ..."
+    sendMessage "Finalizando KannaX ..."
     endLogBotPolling
 }
 
 handleSigTerm() {
-    log "Exiting With SIGTERM (143) ..."
+    log "Saindo com SIGTERM (143) ..."
     stopKannaX
     exit 143
 }
 
 handleSigInt() {
-    log "Exiting With SIGINT (130) ..."
+    log "Saindo com SIGINT (130) ..."
     stopKannaX
     exit 130
 }
