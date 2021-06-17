@@ -44,6 +44,7 @@
 
 <details>
   <summary><b>Detalhes e Guias</b></summary>
+
 ### Pelo Heroku
 <p><a href = "https://heroku.com/deploy?template=https://github.com/fnixdev/KannaX-Deploy"><img src="https://www.herokucdn.com/deploy/button.svg" alt="MyGpac"> </a></p>
 
