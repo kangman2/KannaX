@@ -21,26 +21,26 @@ from kannax import logging, Config, logbot
 _LOG = logging.getLogger(__name__)
 _LOG_STR = "$$$>>> %s <<<$$$"
 
-logbot.edit_last_msg("Connecting to Database ...", _LOG.info, _LOG_STR)
+logbot.edit_last_msg("Conectando-se a Database ...", _LOG.info, _LOG_STR)
 
 _MGCLIENT: AgnosticClient = AsyncIOMotorClient(Config.DB_URI)
 _RUN = asyncio.get_event_loop().run_until_complete
 
 if "KannaX" in _RUN(_MGCLIENT.list_database_names()):
-    _LOG.info(_LOG_STR, "KannaX Database Found :) => Now Logging to it...")
+    _LOG.info(_LOG_STR, "Banco de dados KannaX encontrado :) => Agora logando nele...")
 else:
-    _LOG.info(_LOG_STR, "KannaX Database Not Found :( => Creating New Database...")
+    _LOG.info(_LOG_STR, "Banco de dados KannaX não encontrado :( => Criando nova Database...")
 
 _DATABASE: AgnosticDatabase = _MGCLIENT["KannaX"]
 _COL_LIST: List[str] = _RUN(_DATABASE.list_collection_names())
 
 
 def get_collection(name: str) -> AgnosticCollection:
-    """ Create or Get Collection from your database """
+    """ Criar ou obter coleção de seu banco de dados """
     if name in _COL_LIST:
-        _LOG.debug(_LOG_STR, f"{name} Collection Found :) => Now Logging to it...")
+        _LOG.debug(_LOG_STR, f"{name} Coleção encontrada :) => Agora logando nela...")
     else:
-        _LOG.debug(_LOG_STR, f"{name} Collection Not Found :( => Creating New Collection...")
+        _LOG.debug(_LOG_STR, f"{name} Coleção não encontrada :( => Criando nova coleção...")
     return _DATABASE[name]
 
 
