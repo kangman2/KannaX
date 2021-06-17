@@ -102,14 +102,12 @@
 #### Pelo REPL (Metodo mais facil)
 - [Gerar String no REPL](https://replit.com/@fnixdev/StringSessionKX)
 
-### Mais informações
-- Voce pode [clicar aqui](https://fnixdev.github.io/KannaX.html) para saber mais sobre o KannaX
-
 ### Créditos pelo Projeto
 * [USERGE-X](https://github.com/code-rgb/USERGE-X)
 * [Pyrogram Assistant](https://github.com/pyrogram/assistant)
 * [PyroGramBot](https://github.com/SpEcHiDe/PyroGramBot)
 * [PaperPlane](https://github.com/RaphielGang/Telegram-Paperplane)
 * [Uniborg](https://github.com/SpEcHiDe/UniBorg)
+
 ### Copyright & License 
 [**GNU General Public License v3.0**](https://github.com/fnixdev/KannaX/blob/master/LICENSE)
