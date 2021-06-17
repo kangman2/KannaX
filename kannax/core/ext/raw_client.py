@@ -24,11 +24,11 @@ from pyrogram.raw.core import TLObject
 import kannax  # pylint: disable=unused-import
 
 _LOG = kannax.logging.getLogger(__name__)
-_LOG_STR = "<<<!  {  (FLOOD CONTROL) sleeping %.2fs in %d  }  !>>>"
+_LOG_STR = "<<<!  {  (CONTROLE DE FLOOD) sleeping %.2fs in %d  }  !>>>"
 
 
 class RawClient(Client):
-    """ kannax raw client """
+    """ kannax raw cliente """
     DUAL_MODE = False
     LAST_OUTGOING_TIME = time()
     REQ_LOGS: Dict[int, 'ChatReq'] = {}
