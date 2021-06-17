@@ -21,25 +21,25 @@ class Conversation:  # pylint: disable=missing-class-docstring
                      *, user_id: Union[str, int] = 0,
                      timeout: Union[int, float] = 10,
                      limit: int = 10) -> 'types.new.Conversation':
-        """\nThis returns new conversation object.
+        """\nIsso retorna um novo objeto de conversa.
 
         Parameters:
             chat_id (``int`` | ``str``):
-                Unique identifier (int) or username (str) of the target chat.
-                For your personal cloud (Saved Messages)
-                you can simply use "me" or "self".
-                For a contact that exists in your Telegram address book
-                you can use his phone number (str).
+                Identificador único (int) ou nome de usuário (str) do chat de destino.
+                Para sua nuvem pessoal (mensagens salvas)
+                você pode simplesmente usar "me" ou "self".
+                Para um contato que existe em sua lista de endereços do Telegram
+                você pode usar seu número de telefone (str).
 
             user_id (``int`` | ``str`` | , *optional*):
-                define a specific user in this chat.
+                definir um usuário específico neste chat.
 
             timeout (``int`` | ``float`` | , *optional*):
-                set conversation timeout.
-                defaults to 10.
+                definir o tempo limite da conversa.
+                o padrão é 10.
 
             limit (``int`` | , *optional*):
-                set conversation message limit.
-                defaults to 10.
+                definir limite de mensagem de conversa.
+                o padrão é 10.
         """
         return types.new.Conversation(self, chat_id, user_id, timeout, limit)
