@@ -31,7 +31,7 @@ log() {
 }
 
 quit() {
-    local err="\t:: ERROR :: $1\nExiting With SIGTERM (143) ..."
+    local err="\t:: ERROR :: $1\nSaindo com SIGTERM (143) ..."
     if (( getMessageCount )); then
         replyLastMessage "$err"
     else
