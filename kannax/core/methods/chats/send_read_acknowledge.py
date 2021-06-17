@@ -24,32 +24,32 @@ class SendReadAcknowledge(RawClient):  # pylint: disable=missing-class-docstring
                                                    Optional[RawMessage]] = None,
                                     *, max_id: Optional[int] = None,
                                     clear_mentions: bool = False) -> bool:
-        """\nMarks messages as read and optionally clears mentions.
+        """\nMarca as mensagens como lidas e, opcionalmente, limpa as menções.
 
         Parameters:
             chat_id (``int`` | ``str``):
-                Unique identifier (int) or username (str) of the target chat.
-                For your personal cloud (Saved Messages)
-                you can simply use "me" or "self".
-                For a contact that exists in your Telegram address book
-                you can use his phone number (str).
+                Identificador único (int) ou nome de usuário (str) do chat de destino.
+                 Para sua nuvem pessoal (mensagens salvas)
+                 você pode simplesmente usar "me" ou "self".
+                 Para um contato que existe em sua lista de endereços do Telegram
+                 você pode usar seu número de telefone (str).
 
             message (``list`` | :obj: `Message`, *optional*):
-                Either a list of messages or a single message.
+                Uma lista de mensagens ou uma única mensagem.
 
             max_id (``int``, *optional*):
-                Until which message should the read acknowledge be sent for.
-                This has priority over the ``message`` parameter.
+                Até que mensagem deve ser enviada a confirmação de leitura.
+                Isso tem prioridade sobre o parâmetro `` message``.
 
             clear_mentions (``bool``, *optional*):
-                Whether the mention badge should be cleared (so that
-                there are no more mentions) or not for the given entity.
-                If no message is provided, this will be the only action
-                taken.
-                defaults to False.
+                Se o símbolo de menção deve ser limpo (para que
+                não há mais menções) ou não para a entidade em questão.
+                Se nenhuma mensagem for fornecida, esta será a única ação
+                ocupado.
+                o padrão é False.
 
         Returns:
-            On success, True is returned.
+            Em caso de sucesso, True é retornado.
         """
         if max_id is None:
             if message:
