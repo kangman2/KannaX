@@ -20,11 +20,11 @@ GRepo_regex = comp_regex(
 
 _REPO = Repo()
 _LOG = logging.getLogger(__name__)
-logbot.reply_last_msg("Setting Configs ...")
+logbot.reply_last_msg("Definição de configurações ...")
 
 
 class Config:
-    """Configs to setup KannaX"""
+    """Configs para configurar KannaX"""
 
     API_ID = int(os.environ.get("API_ID"))
     API_HASH = os.environ.get("API_HASH")
@@ -111,7 +111,7 @@ class Config:
 
 
 def get_version() -> str:
-    """get KannaX version"""
+    """obter versão do KannaX"""
     ver = f"{versions.__major__}.{versions.__minor__}.{versions.__micro__}"
     if Config.HEROKU_ENV:
         if not hasattr(Config, "HBOT_VERSION"):
