@@ -47,23 +47,23 @@ async def _complete_init_tasks() -> None:
 class _AbstractKannaX(Methods, RawClient):
     @property
     def is_bot(self) -> bool:
-        """ returns client is bot or not """
+        """ devolve o cliente é bot ou não """
         if self._bot is not None:
             return hasattr(self, 'ubot')
         return bool(Config.BOT_TOKEN)
 
     @property
     def uptime(self) -> str:
-        """ returns kannax uptime """
+        """ retorna o tempo de atividade do kannax """
         return time_formatter(time.time() - _START_TIME)
 
     async def finalize_load(self) -> None:
-        """ finalize the plugins load """
+        """ finalizar o carregamento dos plugins """
         await asyncio.gather(_complete_init_tasks(), self.manager.init())
 
     async def load_plugin(self, name: str, reload_plugin: bool = False) -> None:
-        """ Load plugin to KannaX """
-        _LOG.debug(_LOG_STR, f"Importing {name}")
+        """ Carregar plugin para KannaX """
+        _LOG.debug(_LOG_STR, f"Importando {name}")
         _IMPORTED.append(
             importlib.import_module(f"kannax.plugins.{name}"))
         if reload_plugin:
@@ -79,21 +79,21 @@ class _AbstractKannaX(Methods, RawClient):
     async def _load_plugins(self) -> None:
         _IMPORTED.clear()
         _INIT_TASKS.clear()
-        logbot.edit_last_msg("Importing All Plugins", _LOG.info, _LOG_STR)
+        logbot.edit_last_msg("Importando Todos os Plugins", _LOG.info, _LOG_STR)
         for name in get_all_plugins():
             try:
                 await self.load_plugin(name)
             except ImportError as i_e:
                 _LOG.error(_LOG_STR, f"[{name}] - {i_e}")
         await self.finalize_load()
-        _LOG.info(_LOG_STR, f"Imported ({len(_IMPORTED)}) Plugins => "
+        _LOG.info(_LOG_STR, f"Importado ({len(_IMPORTED)}) Plugins => "
                   + str([i.__name__ for i in _IMPORTED]))
 
     async def reload_plugins(self) -> int:
-        """ Reload all Plugins """
+        """ Recarregue todos os Plugins """
         self.manager.clear_plugins()
         reloaded: List[str] = []
-        _LOG.info(_LOG_STR, "Reloading All Plugins")
+        _LOG.info(_LOG_STR, "Recarregue todos os Plugins")
         for imported in _IMPORTED:
             try:
                 reloaded_ = importlib.reload(imported)
@@ -101,7 +101,7 @@ class _AbstractKannaX(Methods, RawClient):
                 _LOG.error(_LOG_STR, i_e)
             else:
                 reloaded.append(reloaded_.__name__)
-        _LOG.info(_LOG_STR, f"Reloaded {len(reloaded)} Plugins => {reloaded}")
+        _LOG.info(_LOG_STR, f"Recarregado {len(reloaded)} Plugins => {reloaded}")
         await self.finalize_load()
         return len(reloaded)
 
@@ -109,12 +109,12 @@ class _AbstractKannaX(Methods, RawClient):
 class KannaXBot(_AbstractKannaX):
     """ KannaX Bot """
     def __init__(self, **kwargs) -> None:
-        _LOG.info(_LOG_STR, "Setting X-BOT Configs")
+        _LOG.info(_LOG_STR, "Definir configurações X-BOT")
         super().__init__(session_name=":memory:", **kwargs)
 
     @property
     def ubot(self) -> 'KannaX':
-        """ returns userbot """
+        """ retorna userbot """
         return self._bot
 
 
@@ -124,7 +124,7 @@ class KannaX(_AbstractKannaX):
     has_bot = bool(Config.BOT_TOKEN)
 
     def __init__(self, **kwargs) -> None:
-        _LOG.info(_LOG_STR, "Setting KannaX Configs")
+        _LOG.info(_LOG_STR, "Definir KannaX Configs")
         kwargs = {
             'api_id': Config.API_ID,
             'api_hash': Config.API_HASH,
@@ -146,30 +146,30 @@ class KannaX(_AbstractKannaX):
         if self._bot is None:
             if Config.BOT_TOKEN:
                 return self
-            raise KannaXBotNotFound("Need BOT_TOKEN ENV!")
+            raise KannaXBotNotFound("Precisa BOT_TOKEN ENV!")
         return self._bot
 
     async def start(self) -> None:
-        """ start client and bot """
-        _LOG.info(_LOG_STR, "Starting KannaX")
+        """ iniciar cliente e bot """
+        _LOG.info(_LOG_STR, "Iniciando KannaX")
         await super().start()
         if self._bot is not None:
-            _LOG.info(_LOG_STR, "Starting X-Bot")
+            _LOG.info(_LOG_STR, "Iniciando X-Bot")
             await self._bot.start()
         await self._load_plugins()
 
     async def stop(self) -> None:  # pylint: disable=arguments-differ
-        """ stop client and bot """
+        """ parar cliente e bot """
         if self._bot is not None:
-            _LOG.info(_LOG_STR, "Stopping X-Bot")
+            _LOG.info(_LOG_STR, "Parando X-Bot")
             await self._bot.stop()
-        _LOG.info(_LOG_STR, "Stopping KannaX")
+        _LOG.info(_LOG_STR, "Parando KannaX")
         await super().stop()
         _close_db()
         pool._stop()  # pylint: disable=protected-access
 
     def begin(self, coro: Optional[Awaitable[Any]] = None) -> None:
-        """ start kannax """
+        """ iniciar kannax """
         lock = asyncio.Lock()
         running_tasks: List[asyncio.Task] = []
 
@@ -186,11 +186,11 @@ class KannaX(_AbstractKannaX):
             [t.cancel() for t in asyncio.all_tasks() if t is not asyncio.current_task()]
             await self.loop.shutdown_asyncgens()
             self.loop.stop()
-            _LOG.info(_LOG_STR, "Loop Stopped !")
+            _LOG.info(_LOG_STR, "Loop Parou !")
 
         async def _shutdown(_sig: signal.Signals) -> None:
             global _SEND_SIGNAL  # pylint: disable=global-statement
-            _LOG.info(_LOG_STR, f"Received Stop Signal [{_sig.name}], Exiting KannaX ...")
+            _LOG.info(_LOG_STR, f"Sinal de parada recebido [{_sig.name}], Desligando KannaX ...")
             await _finalize()
             if _sig == _sig.SIGUSR1:
                 _SEND_SIGNAL = True
@@ -201,21 +201,21 @@ class KannaX(_AbstractKannaX):
         self.loop.run_until_complete(self.start())
         for task in self._tasks:
             running_tasks.append(self.loop.create_task(task()))
-        logbot.edit_last_msg("KannaX has Started Successfully !")
+        logbot.edit_last_msg("KannaX Iniciado com Sucesso !")
         logbot.end()
         mode = "[DUAL]" if RawClient.DUAL_MODE else "[BOT]" if Config.BOT_TOKEN else "[USER]"
         try:
             if coro:
-                _LOG.info(_LOG_STR, f"Running Coroutine - {mode}")
+                _LOG.info(_LOG_STR, f"Executando Corrotina - {mode}")
                 self.loop.run_until_complete(coro)
             else:
-                _LOG.info(_LOG_STR, f"Idling KannaX - {mode}")
+                _LOG.info(_LOG_STR, f"Inativo KannaX - {mode}")
                 idle()
             self.loop.run_until_complete(_finalize())
         except (asyncio.exceptions.CancelledError, RuntimeError):
             pass
         finally:
             self.loop.close()
-            _LOG.info(_LOG_STR, "Loop Closed !")
+            _LOG.info(_LOG_STR, "Loop Fechado !")
             if _SEND_SIGNAL:
                 os.kill(os.getpid(), signal.SIGUSR1)
