@@ -27,7 +27,7 @@ _getResponse() {
                 [[ $chatType == \"supergroup\" || $chatType == \"channel\" ]] || \
                     quit "invalid log chat type ! [$chatType]"
                 local chatUsername=$(echo $rawUpdate | jq .result.chat.username)
-                test $chatUsername != null && quit "log chat should be private !"
+                test $chatUsername != null && quit "o chat de registro deve ser privado !"
                 _isChecked=1
             fi
             if test $parse = true; then
