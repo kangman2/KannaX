@@ -40,8 +40,10 @@
 * Google Drive [API Keys](https://console.developers.google.com/)
 * MongoDB [Database URL](https://cloud.mongodb.com/)
 
-## Instalar
+## Como Instalar
 
+<details>
+  <summary><b>Detalhes e Guias</b></summary>
 ### Pelo Heroku
 <p><a href = "https://heroku.com/deploy?template=https://github.com/fnixdev/KannaX-Deploy"><img src="https://www.herokucdn.com/deploy/button.svg" alt="MyGpac"> </a></p>
 
@@ -82,6 +84,7 @@
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>bash run
 </code></pre></div></div>
+</details>
 
 ## String Session
 - VAR ->** `HU_STRING_SESSION`
