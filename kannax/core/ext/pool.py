@@ -24,12 +24,12 @@ _LOG_STR = "<<<!  ||||  %s  ||||  !>>>"
 
 
 def submit_thread(func: Callable[[Any], Any], *args: Any, **kwargs: Any) -> Future:
-    """ submit thread to thread pool """
+    """ enviar discussão para pool de discussão """
     return _EXECUTOR.submit(func, *args, **kwargs)
 
 
 def run_in_thread(func: Callable[[Any], Any]) -> Callable[[Any], Any]:
-    """ run in a thread """
+    """ run em um tópico """
     @wraps(func)
     async def wrapper(*args: Any, **kwargs: Any) -> Any:
         loop = asyncio.get_running_loop()
@@ -44,8 +44,8 @@ def _get() -> ThreadPoolExecutor:
 def _stop():
     _EXECUTOR.shutdown()
     # pylint: disable=protected-access
-    _LOG.info(_LOG_STR, f"Stopped Pool : {_EXECUTOR._max_workers} Workers")
+    _LOG.info(_LOG_STR, f"Parando Pool : {_EXECUTOR._max_workers} Workers")
 
 
 # pylint: disable=protected-access
-_LOG.info(_LOG_STR, f"Started Pool : {_EXECUTOR._max_workers} Workers")
+_LOG.info(_LOG_STR, f"Iniciando Pool : {_EXECUTOR._max_workers} Workers")
