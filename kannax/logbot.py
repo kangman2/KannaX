@@ -29,27 +29,27 @@ def _send_data(*args) -> None:
 
 @_log
 def send_msg(text: str, log=None, tmp=None) -> None:  # pylint: disable=unused-argument
-    """ send message """
+    """ enviar mensagem """
     _send_data("sendMessage", text)
 
 
 @_log
 def reply_last_msg(text: str, log=None, tmp=None) -> None:  # pylint: disable=unused-argument
-    """ reply to last message """
+    """ responder a última mensagem """
     _send_data("replyLastMessage", text)
 
 
 @_log
 def edit_last_msg(text: str, log=None, tmp=None) -> None:  # pylint: disable=unused-argument
-    """ edit last message """
+    """ editar a última mensagem """
     _send_data("editLastMessage", text)
 
 
 def del_last_msg() -> None:
-    """ delete last message """
+    """ apagar a última mensagem """
     _send_data("deleteLastMessage")
 
 
 def end() -> None:
-    """ end bot session """
+    """ terminar sessão de bot """
     _send_data("quit")
