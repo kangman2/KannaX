@@ -9,43 +9,43 @@
 # All rights reserved.
 
 _checkBashReq() {
-    log "Checking Bash Commands ..."
-    command -v jq &> /dev/null || quit "Required command : jq : could not be found !"
+    log "Verificando Comandos Bash ..."
+    command -v jq &> /dev/null || quit "Comando necessário :jq : não foi encontrado! !"
 }
 
 _checkPythonVersion() {
-    log "Checking Python Version ..."
+    log "Verificando a versão do Python..."
     getPythonVersion
     ( test -z $pVer || test $(sed 's/\.//g' <<< $pVer) -lt 3${minPVer}0 ) \
-        && quit "You MUST have a python version of at least 3.$minPVer.0 !"
-    log "\tFound PYTHON - v$pVer ..."
+        && quit "Você DEVE ter uma versão python de pelo menos 3.$minPVer.0 !"
+    log "\tPYTHON encontrado- v$pVer ..."
 }
 
 _checkConfigFile() {
-    log "Checking Config File ..."
+    log "Verificando o arquivo de configuração ..."
     configPath="config.env"
     if test -f $configPath; then
-        log "\tConfig file found : $configPath, Exporting ..."
+        log "\tArquivo de configuração encontrado : $configPath, Exportando ..."
         set -a
         . $configPath
         set +a
         test ${_____REMOVE_____THIS_____LINE_____:-fasle} = true \
-            && quit "Please remove the line mentioned in the first hashtag from the config.env file"
+            && quit "Remova a linha mencionada na primeira hashtag do arquivo config.env"
     fi
 }
 
 _checkRequiredVars() {
-    log "Checking Required ENV Vars ..."
+    log "Verificando ENV Vars obrigatórias ..."
     for var in API_ID API_HASH LOG_CHANNEL_ID DATABASE_URL; do
-        test -z ${!var} && quit "Required $var var !"
+        test -z ${!var} && quit "Requer $var var !"
     done
-    [[ -z $HU_STRING_SESSION && -z $BOT_TOKEN ]] && quit "Required HU_STRING_SESSION or BOT_TOKEN var !"
-    [[ -n $BOT_TOKEN && -z $OWNER_ID ]] && quit "Required OWNER_ID var !"
-    test -z $BOT_TOKEN && log "\t[HINT] >>> BOT_TOKEN not found ! (Disabling Advanced Loggings)"
+    [[ -z $HU_STRING_SESSION && -z $BOT_TOKEN ]] && quit "Necessário HU_STRING_SESSION ou BOT_TOKEN var !"
+    [[ -n $BOT_TOKEN && -z $OWNER_ID ]] && quit "Obrigatório OWNER_ID var !"
+    test -z $BOT_TOKEN && log "\t[DICA] >>> BOT TOKEN não encontrado! (Desativando o registro avançado)"
 }
 
 _checkDefaultVars() {
-    replyLastMessage "Checking Default ENV Vars ..."
+    replyLastMessage "Verificando ENV Vars padrão ..."
     declare -rA def_vals=(
         [WORKERS]=0
         [PREFERRED_LANGUAGE]="en"
@@ -94,7 +94,7 @@ print(quote_plus("'$uNameAndPass'"))')
 }
 
 _checkDatabase() {
-    editLastMessage "Checking DATABASE_URL ..."
+    editLastMessage "Verificando DATABASE_URL ..."
     local mongoErr=$(runPythonCode '
 import pymongo
 try:
@@ -105,16 +105,16 @@ except Exception as e:
 }
 
 _checkTriggers() {
-    editLastMessage "Checking TRIGGERS ..."
+    editLastMessage "Verificando TRIGGERS ..."
     test $CMD_TRIGGER = $SUDO_TRIGGER \
         && quit "Invalid SUDO_TRIGGER!, You can't use $CMD_TRIGGER as SUDO_TRIGGER"
 }
 
 _checkPaths() {
-    editLastMessage "Checking Paths ..."
+    editLastMessage "Verificando Paths ..."
     for path in $DOWN_PATH logs; do
         test ! -d $path && {
-            log "\tCreating Path : ${path%/} ..."
+            log "\tCriando Path : ${path%/} ..."
             mkdir -p $path
         }
     done
@@ -122,8 +122,8 @@ _checkPaths() {
 
 _checkUpstreamRepo() {
     remoteIsExist $UPSTREAM_REMOTE || addUpstream
-    editLastMessage "Fetching Data From UPSTREAM_REPO ..."
-    fetchUpstream || updateUpstream && fetchUpstream || quit "Invalid UPSTREAM_REPO var !"
+    editLastMessage "Buscando dados de UPSTREAM_REPO ..."
+    fetchUpstream || updateUpstream && fetchUpstream || quit "UPSTREAM_REPO inválido !"
     fetchBranches
     updateBuffer
 }
@@ -131,11 +131,11 @@ _checkUpstreamRepo() {
 _setupPlugins() {
     local link path tmp
     if test $(grep -P '^'$2'$' <<< $3); then
-        editLastMessage "Cloning $1 Plugins ..."
+        editLastMessage "Clonando $1 Plugins ..."
         link=$(test $4 && echo $4 || echo $3)
         tmp=Temp-Plugins
         gitClone --depth=1 $link $tmp
-        replyLastMessage "\tInstalling Requirements ..."
+        replyLastMessage "\tInstalando Requisitos ..."
         upgradePip
         installReq $tmp
         path=$(tr "[:upper:]" "[:lower:]" <<< $1)
@@ -145,7 +145,7 @@ _setupPlugins() {
         rm -rf $tmp/
         deleteLastMessage
     else
-        editLastMessage "$1 Plugins Disabled !"
+        editLastMessage "$1 Plugins Desativados !"
     fi
 }
 
