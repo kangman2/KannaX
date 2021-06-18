@@ -46,15 +46,22 @@
   <summary><b>Detalhes e Guias</b></summary>
 
 ### Pelo Heroku
-<p>1. Clique aqui para dar deploy ao KannaX.</p>
+<p>- Clique aqui para dar deploy ao KannaX.</p>
 <p><a href = "https://heroku.com/deploy?template=https://github.com/fnixdev/KannaX-Deploy"><img src="https://www.herokucdn.com/deploy/button.svg" alt="MyGpac"> </a></p>
-<p>2. Preencha API_ID, API_HASH, DATABASE_URL, LOG_CHANNEL_ID, HEROKU_APP_NAME e HEROKU_API_KEY (**obrigatorio**)</p>
-<p>3. Cique no botao Deploy.</p>
-<p>4. Ligue o Dyno na aba de Resource.</p>
-<p>5. É isso ... Comece a usar KannaX.</p>
+<p>- Preencha `API_ID` | `API_HASH`` | `DATABASE_URL` | `LOG_CHANNEL_ID` | `HEROKU_APP_NAME` | `HEROKU_API_KEY` <strong>(obrigatorio)<strong></p>
+<p>- Cique no botao Deploy.</p>
+<p>- Ligue o Dyno na aba de Resource.</p>
+<p>- É isso ... Comece a usar KannaX.</p>
 <p>Você pode adicionar tambem <a href="https://telegra.ph/Deploy-VARs-Heroku-05-26">VARs não obrigatorias</a> mais tarde de acordo com suas necessidades. Esses vars são usados por seus respectivos plug-ins no userbot para funcionar. Para saber como adicionar vars não obrigatórios, verifique este <a href="https://telegra.ph/Tutorial-VARs-Extras-06-15">Guia</a>.</p>
 
 ### Instalando com Metodo Tradicional
+
+#### Metodo fácil e automatico
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ bash <(curl -s https://fnixdev.github.io/Setup_Local_VPS.sh)
+</code></pre></div></div>
+   
+#### Método manual
+
 <p><strong>1. Instalando os pacotes</strong></p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo apt install tree wget2 p7zip-full jq ffmpeg wget git
@@ -94,7 +101,7 @@
 </details>
 
 ## String Session
-- VAR ->** `HU_STRING_SESSION`
+- VAR -> `HU_STRING_SESSION`
 
 #### Pelo HEROKU
 - [Abra seu app heroku](https://dashboard.heroku.com/apps/) clique em **more** -> **run console** e digite `bash genStr` e clique em **run**.
