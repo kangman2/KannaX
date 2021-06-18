@@ -1,0 +1,17 @@
+[Unit]
+Description=KannaX Userbot
+After=network-online.target
+
+[Service]
+User=userxname
+WorkingDirectory=dirname/KannaX
+Type=simple
+ExecStartPre=+/bin/chown -R userxname /dirname/KannaX
+ExecStart=/bin/bash /dirname/KannaX/run
+RemainAfterExit=no
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target
+
