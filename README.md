@@ -3,17 +3,15 @@
 </p>
 <p align="center">
 <a href="https://github.com/fnixdev"><img title="Author" src="https://img.shields.io/badge/Author-fnixdev-red.svg?style=for-the-badge&logo=github"></a>
+<a href="http://fnixdev.github.io/"><img title="Bio" src="https://img.shields.io/badge/FNIXDEV-BIO-red.svg?style=for-the-badge&logo=appveyor"></a>
 </p>
 <p align="center">
+<a href="https://t.me/kannaxupdates"><img src="https://img.shields.io/badge/Join-Telegram%20Group-red.svg?style=flat-square&logo=Telegram"></a>
 <a href="https://github.com/fnixdev/KannaX/issues"><img alt="GitHub issues" src="https://img.shields.io/github/issues/fnixdev/KannaX?style=flat-square"></a>
 <a href="https://github.com/fnixdev/KannaX/blob/master/LICENSE"><img alt="GitHub license" src="https://img.shields.io/github/license/fnixdev/KannaX?style=flat-square"></a>
 <a href="https://github.com/fnixdev/KannaX/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/fnixdev/KannaX?style=flat-square"></a>
 <a href="https://github.com/fnixdev/KannaX/network"><img alt="GitHub forks" src="https://img.shields.io/github/forks/fnixdev/KannaX?style=flat-square"></a>
 </p>
-
-
-## Suporte 
-<a href="https://t.me/kannaxupdates"><img src="https://img.shields.io/badge/Join-Telegram%20Channel-red.svg?logo=Telegram"></a>
 
 ## Disclaimer
 ```
@@ -48,7 +46,7 @@
 ### Pelo Heroku
 <p>- Clique aqui para dar deploy ao KannaX.</p>
 <p><a href = "https://heroku.com/deploy?template=https://github.com/fnixdev/KannaX-Deploy"><img src="https://www.herokucdn.com/deploy/button.svg" alt="MyGpac"> </a></p>
-<p>- Preencha `API_ID` | `API_HASH`` | `DATABASE_URL` | `LOG_CHANNEL_ID` | `HEROKU_APP_NAME` | `HEROKU_API_KEY` <strong>(obrigatorio)<strong></p>
+<p>- Preencha API_ID | API_HASH | DATABASE_URL | LOG_CHANNEL_ID | HEROKU_APP_NAME | HEROKU_API_KEY <strong>(obrigatorio)<strong></p>
 <p>- Cique no botao Deploy.</p>
 <p>- Ligue o Dyno na aba de Resource.</p>
 <p>- É isso ... Comece a usar KannaX.</p>
