@@ -1,7 +1,7 @@
 # Copyright (C) 2021 BY - GitHub.com/code-rgb [TG - @deleteduser420]
 # All rights reserved.
 
-"""Module that handles Bot PM"""
+"""Módulo que lida com Bot PM"""
 
 import asyncio
 from collections import defaultdict
@@ -94,7 +94,7 @@ if kannax.has_bot:
                     _BOT_PM_MEDIA = bot_m_fid
 
     async def get_bot_info():
-        """Caching Owner and bot info"""
+        """Proprietário do cache e informações do bot"""
         global _CACHED_INFO
         t_now = datetime.now()
         if not (
@@ -109,8 +109,8 @@ if kannax.has_bot:
             except (BadRequest, IndexError):
                 _CACHED_INFO["owner"] = Config.OWNER_ID[0]
                 LOGGER.debug(
-                    "Coudn't get Info about User in OWNER_ID !\n"
-                    "Try /start in bot or check OWNER_ID var"
+                    "Não consigo obter informações sobre o usuário em OWNER_ID !\n"
+                    "Tente /start no bot ou verifique OWNER_ID var"
                 )
             else:
                 _CACHED_INFO["owner"] = owner_info
@@ -146,9 +146,9 @@ if kannax.has_bot:
             if not found:
                 start_date = str(date.today().strftime("%B %d, %Y")).replace(",", "")
                 bot_start_msg = (
-                    f"A <b>[New User](tg://openmessage?user_id={user_.id})</b> Started your Bot.\n"
+                    f"A <b>[Novo Usuario](tg://openmessage?user_id={user_.id})</b> Iniciou seu bot.\n"
                     f"  ID: <code>{user_.id}</code>\n"
-                    f"  Name: {user_.flname}\n"
+                    f"  Nome: {user_.flname}\n"
                     f"  👤: {user_.mention}\n"
                 )
                 await asyncio.gather(
@@ -164,9 +164,9 @@ if kannax.has_bot:
         return not bool(found)
 
     def default_owner_start(from_user):
-        start_msg = f"Hello Master **{from_user.flname}** !\n"
+        start_msg = f"Oi, mestre 🥰 **{from_user.flname}** !\n"
         btns = [
-            [InlineKeyboardButton("➕  ADD TO GROUP", callback_data="add_to_grp")],
+            [InlineKeyboardButton("➕ ADICIONAR AO GRUPO", callback_data="add_to_grp")],
         ]
         return start_msg, btns
 
@@ -180,15 +180,12 @@ if kannax.has_bot:
             start_msg, btns = default_owner_start(from_user)
         else:
             start_msg = f"""
-__Hello__ `{from_user.fname}`,
-__eu sou KannaChan 🥰 assistente pessoal__
-
-        <b><i>Created by</i> [fnixdev](https://t.me/fnixdev)
-
-My Master : {owner_.flname}</b>
+__Hello__ {from_user.fname},__
+__eu sou KannaX 🥰 assistente pessoal.__
+Meu mestre : {owner_.flname}
 """
             if Config.BOT_FORWARDS:
-                start_msg += "<b>\n📌 NOTA:</b>\nVocê pode 📨 <b>enviar mensagens</b> aqui pra falar com <b>My Mestre.</b>"
+                start_msg += "`Você pode entrar em contato com meu mestre usando este bot!!\nEnvie sua mensagem, vou entregá-la ao mestre.`"
             contact_url = (
                 f"https://t.me/{owner_.uname}"
                 if owner_.uname
@@ -206,7 +203,7 @@ My Master : {owner_.flname}</b>
             await asyncio.sleep(e.x + 10)
         except Exception as bpm_e:
             await CHANNEL.log(
-                f"**ERROR**: {str(bpm_e)}\n\nFatal Error occured while sending Bot Pm Media"
+                f"**ERROR**: {str(bpm_e)}\n\nOcorreu um erro fatal durante o envio de bot Pm Media"
             )
         await check_new_bot_user(message.from_user)
 
@@ -214,12 +211,12 @@ My Master : {owner_.flname}</b>
     @check_owner
     async def add_to_grp(c_q: CallbackQuery):
         await c_q.answer()
-        msg = "<b>🤖 Add Your Bot to Group</b> \n\n📌 **NOTE:**\n<i>Admin Privilege Required !</i>"
+        msg = "<b>🤖 Adicione o seu bot ao grupo</b> \n\n📌 **NOTA:**\n<i>Privilégio de administrador obrigatório !</i>"
         add_bot = f"http://t.me/{(await get_bot_info())['bot'].uname}?startgroup=start"
         buttons = InlineKeyboardMarkup(
             [
-                [InlineKeyboardButton("➕ PRESS TO ADD", url=add_bot)],
-                [InlineKeyboardButton("BACK", callback_data="back_bot_pm")],
+                [InlineKeyboardButton("➕ PRESSIONE PARA ADICIONAR", url=add_bot)],
+                [InlineKeyboardButton("VOLTAR", callback_data="back_bot_pm")],
             ]
         )
         await c_q.edit_message_text(msg, reply_markup=buttons)
@@ -259,13 +256,13 @@ My Master : {owner_.flname}</b>
             flood_count = FloodConfig.ALERT[user_.id]["count"] = 1
 
         flood_msg = (
-            r"⚠️ <b>\\#Flood_Warning//</b>"
+            r"⚠️ <b>\\#Flood_PmBot//</b>"
             "\n\n"
             f"  ID: <code>{user_.id}</code>\n"
-            f"  Name: {user_.flname}\n"
-            f"  👤 User: {user_.mention}"
-            f"\n\n**Is spamming your bot !** ->  [ Flood rate **({flood_count})** ]\n"
-            "__Quick Action__: Ignored from bot for a while."
+            f"  Nome: {user_.flname}\n"
+            f"  👤 Usuario: {user_.mention}"
+            f"\n\n**Está enviando spam para o seu bot !** ->  [ Flood rate **({flood_count})** ]\n"
+            "__Ação rápida__: Ignorado pelo bot por um tempo."
         )
 
         if found:
@@ -273,13 +270,13 @@ My Master : {owner_.flname}</b>
                 if user_.id in Config.SUDO_USERS:
                     sudo_spam = (
                         f"**Sudo User** {user_.mention}:\n  ID: {user_.id}\n\n"
-                        "Is Flooding your bot !, Check `.help delsudo` to remove the user from Sudo."
+                        "Está flodando seu bot !, Verifique `.help delsudo` para remover o usuário do Sudo."
                     )
                     await kannax.bot.send_message(Config.LOG_CHANNEL_ID, sudo_spam)
                 else:
                     await ban_from_bot_pm(
                         user_.id,
-                        f"Automated Ban for Flooding bot [exceeded flood rate of **({FloodConfig.AUTOBAN})**]",
+                        f"AutoBan para flood no bot [taxa de flood excedida de **({FloodConfig.AUTOBAN})**]",
                         log=__name__,
                     )
                     FloodConfig.USERS[user_.id].clear()
@@ -305,10 +302,10 @@ My Master : {owner_.flname}</b>
             try:
                 await kannax.bot.send_message(
                     Config.OWNER_ID[0],
-                    f"⚠️  **[Bot Flood Warning !]({fa_msg.link})**",
+                    f"⚠️  **[Bot Aviso Flood !]({fa_msg.link})**",
                 )
             except UserIsBlocked:
-                await CHANNEL.log("**Unblock your bot !**")
+                await CHANNEL.log("**Desbloqueie seu bot !**")
         if FloodConfig.ALERT[user_.id].get("fa_id") is None and fa_msg:
             FloodConfig.ALERT[user_.id]["fa_id"] = fa_msg.message_id
 
@@ -317,9 +314,9 @@ My Master : {owner_.flname}</b>
     async def bot_pm_ban_cb(c_q: CallbackQuery):
         user_id = int(c_q.matches[0].group(1))
         await asyncio.gather(
-            c_q.answer(f"Banning UserID -> {user_id} ...", show_alert=False),
+            c_q.answer(f"Banindo UserID -> {user_id} ...", show_alert=False),
             ban_from_bot_pm(user_id, "Spamming Bot", log=__name__),
-            c_q.edit_message_text(f"✅ **Successfully Banned**  User ID: {user_id}"),
+            c_q.edit_message_text(f"✅ **Banido com sucesso**  User ID: {user_id}"),
         )
 
     def time_now() -> Union[float, int]:
@@ -327,7 +324,7 @@ My Master : {owner_.flname}</b>
 
     @pool.run_in_thread
     def is_flood(uid: int) -> Optional[bool]:
-        """Checks if a user is flooding"""
+        """Verifica se um usuário está flodando"""
         FloodConfig.USERS[uid].append(time_now())
         if (
             len(
@@ -355,7 +352,7 @@ My Master : {owner_.flname}</b>
         user_id = msg.from_user.id
         if await BOT_BAN.find_one({"user_id": user_id}):
             # LOGGER.info(
-            #     r"<b>\\#Bot_PM//</b>" f"\n\nBanned UserID: {user_id} ignored from bot."
+            #     r"<b>\\#Bot_PM//</b>" f"\n\nBanned UserID: {user_id} ignorado do bot."
             # )
             await msg.stop_propagation()
         elif await is_flood(user_id):
@@ -372,11 +369,11 @@ My Master : {owner_.flname}</b>
             await c_q.answer("You are banned from this bot !")
             # LOGGER.info(
             #     r"<b>\\#Callback//</b>"
-            #     f"\n\nBanned UserID: {user_id} ignored from bot."
+            #     f"\n\nBanned UserID: {user_id} ignorado do bot."
             # )
             raise StopPropagation
         if await is_flood(user_id):
-            await c_q.answer("Wooh, Mate Chill ! go slow")
+            await c_q.answer("Wooh, Mate Chill ! vá devagar")
             await send_flood_alert(c_q.from_user)
             FloodConfig.BANNED_USERS.add(user_id)
             raise StopPropagation
@@ -396,49 +393,49 @@ My Master : {owner_.flname}</b>
                 {"$set": {"data": Config.BOT_ANTIFLOOD}},
                 upsert=True,
             ),
-            c_q.edit_message_text("BOT_ANTIFLOOD is now disabled !"),
+            c_q.edit_message_text("BOT_ANTIFLOOD agora está desabilitado !"),
         )
 
 
 @kannax.on_cmd(
     "bot_users",
     about={
-        "header": "Get a list Active Users Who started your Bot",
+        "header": "Obtenha uma lista de usuários ativos que iniciaram seu bot",
         "examples": "{tr}bot_users",
     },
     allow_channels=False,
 )
 async def bot_users_(message: Message):
-    """Users Who Stated Your Bot by - /start"""
+    """Usuários que iniciaram seu bot por - /start"""
     msg = ""
     async for c in BOT_START.find():
         msg += (
             f"• <i>ID:</i> <code>{c['user_id']}</code>\n   "
-            f"<b>Name:</b> {c['firstname']},  <b>Date:</b> `{c['date']}`\n"
+            f"<b>Nome:</b> {c['firstname']},  <b>Data:</b> `{c['date']}`\n"
         )
     await message.edit_or_send_as_file(
         f"<u><i><b>Bot PM Userlist</b></i></u>\n\n{msg}"
         if msg
-        else "`Nobody Does it Better`"
+        else "`Ninguém faz melhor`"
     )
 
 
 @kannax.on_cmd(
     "bot_antif",
     about={
-        "header": "enable / disable Bot Antiflood",
-        "description": "Get Notified if a user spams your bot and even autobans",
+        "header": "ativar/desativar o Antiflood de bot",
+        "description": "Seja notificado se um usuário enviar spam para seu bot e até mesmo autobans",
     },
     allow_channels=False,
 )
 async def bot_antiflood_(message: Message):
-    """enable / disable Bot Antiflood"""
+    """ativar/desativar o Antiflood de bot"""
     if Config.BOT_ANTIFLOOD:
         Config.BOT_ANTIFLOOD = False
-        await message.edit("`Bot Antiflood disabled !`", del_in=3)
+        await message.edit("`Antiflood de bot desativado !`", del_in=3)
     else:
         Config.BOT_ANTIFLOOD = True
-        await message.edit("`Bot Antiflood enabled !`", del_in=3)
+        await message.edit("`Antiflood de bot ativado!`", del_in=3)
     await SAVED_SETTINGS.update_one(
         {"_id": "BOT_ANTIFLOOD"},
         {"$set": {"data": Config.BOT_ANTIFLOOD}},
