@@ -1,4 +1,4 @@
-""" manage your group """
+""" gerencie seu grupo """
 
 import asyncio
 import os
@@ -22,13 +22,13 @@ CHANNEL = kannax.getCLogger(__name__)
 @kannax.on_cmd(
     "promote",
     about={
-        "header": "use this to promote group members",
-        "description": "Provides admin rights to the person in the supergroup.\n"
-        "you can also add custom title while promoting new admin.\n"
-        "[NOTE: Requires proper admin rights in the chat!!!]",
+        "header": "use isso para promover os membros do grupo",
+        "description": "Concede direitos de administrador para a pessoa no grupo.\n"
+        "você também pode adicionar um título personalizado enquanto promove um novo administrador.\n"
+        "[NOTA: Requer direitos de administrador adequados no chat!!!]",
         "examples": [
-            "{tr}promote [username | userid] or [reply to user] :custom title (optional)",
-            "{tr}promote @someusername/userid/replytouser Staff (custom title)",
+            "{tr}promote [username | userid] ou [responda um user] :título personalizado (opcional)",
+            "{tr}promote @someusername/userid/replytser Staff (título personalizado)",
         ],
     },
     allow_channels=False,
@@ -37,12 +37,12 @@ CHANNEL = kannax.getCLogger(__name__)
 async def promote_usr(message: Message):
     """promote members in tg group"""
     chat_id = message.chat.id
-    await message.edit("`Trying to Promote User.. Hang on!! ⏳`")
+    await message.edit("`Tentando promover o usuário .. Espere aí!! ⏳`")
     user_id, custom_rank = message.extract_user_and_text
     if not user_id:
         await message.edit(
-            text="`no valid user_id or message specified,`"
-            "`do .help promote for more info`",
+            text="`nenhum user_id válido ou mensagem especificada,`"
+            "`.help promote para mais informações`",
             del_in=5,
         )
         return
@@ -64,7 +64,7 @@ async def promote_usr(message: Message):
         if custom_rank:
             await asyncio.sleep(2)
             await message.client.set_administrator_title(chat_id, user_id, custom_rank)
-        await message.edit("`👑 Promoted Successfully..`", del_in=5)
+        await message.edit("`👑 Promovido com sucesso..`", del_in=5)
         await CHANNEL.log(
             "#PROMOTE\n\n"
             f"USER: [{get_mem.user.first_name}](tg://user?id={get_mem.user.id}) "
@@ -73,24 +73,24 @@ async def promote_usr(message: Message):
             f"CHAT: `{message.chat.title}` (`{chat_id}`)"
         )
     except UsernameInvalid:
-        await message.edit("`invalid username, try again with valid info ⚠`", del_in=5)
+        await message.edit("`nome de usuário inválido, tente novamente com informações válidas ⚠`", del_in=5)
     except PeerIdInvalid:
         await message.edit(
-            "`invalid username or userid, try again with valid info ⚠`", del_in=5
+            "`nome de usuário ou ID de usuário inválido, tente novamente com informações válidas ⚠`", del_in=5
         )
     except UserIdInvalid:
-        await message.edit("`invalid userid, try again with valid info ⚠`", del_in=5)
+        await message.edit("`ID de usuário inválido, tente novamente com informações válidas ⚠`", del_in=5)
     except Exception as e_f:
-        await message.edit(f"`something went wrong! 🤔`\n\n**ERROR:** `{e_f}`")
+        await message.edit(f"`algo deu errado! 🤔`\n\n**ERROR:** `{e_f}`")
 
 
 @kannax.on_cmd(
     "demote",
     about={
-        "header": "use this to demote group members",
-        "description": "Remove admin rights from admin in the supergroup.\n"
-        "[NOTE: Requires proper admin rights in the chat!!!]",
-        "examples": "{tr}demote [username | userid] or [reply to user]",
+        "header": "use isso para rebaixar membros do grupo",
+        "description": "Remova os direitos de administrador do usuario no grupo.\n"
+        "[NOTA: Requer direitos de administrador adequados no chat!!!]",
+        "examples": "{tr}demote [username | userid] ou [responda um user]",
     },
     allow_channels=False,
     check_promote_perm=True,
@@ -98,12 +98,12 @@ async def promote_usr(message: Message):
 async def demote_usr(message: Message):
     """demote members in tg group"""
     chat_id = message.chat.id
-    await message.edit("`Trying to Demote User.. Hang on!! ⏳`")
+    await message.edit("`Tentando rebaixar o usuário .. Espere aí!! ⏳`")
     user_id, _ = message.extract_user_and_text
     if not user_id:
         await message.edit(
-            text="`no valid user_id or message specified,`"
-            "`do .help demote for more info` ⚠",
+            text="`nenhum user_id válido ou mensagem especificada,`"
+            "`.help demote para mais informações` ⚠",
             del_in=5,
         )
         return
@@ -118,7 +118,7 @@ async def demote_usr(message: Message):
             can_invite_users=False,
             can_pin_messages=False,
         )
-        await message.edit("`🛡 Demoted Successfully..`", del_in=5)
+        await message.edit("`🛡 Rebaixado com sucesso..`", del_in=5)
         await CHANNEL.log(
             "#DEMOTE\n\n"
             f"USER: [{get_mem.user.first_name}](tg://user?id={get_mem.user.id}) "
@@ -126,37 +126,37 @@ async def demote_usr(message: Message):
             f"CHAT: `{message.chat.title}` (`{chat_id}`)"
         )
     except UsernameInvalid:
-        await message.edit("`invalid username, try again with valid info ⚠`", del_in=5)
+        await message.edit("`nome de usuário inválido, tente novamente com informações válidas ⚠`", del_in=5)
     except PeerIdInvalid:
         await message.edit(
-            "`invalid username or userid, try again with valid info ⚠`", del_in=5
+            "`nome de usuário inválido, tente novamente com informações válidas ⚠`", del_in=5
         )
     except UserIdInvalid:
-        await message.edit("`invalid userid, try again with valid info ⚠`", del_in=5)
+        await message.edit("`ID de usuário inválido, tente novamente com informações válidas ⚠`", del_in=5)
     except Exception as e_f:
-        await message.edit(f"`something went wrong! 🤔`\n\n**ERROR:** `{e_f}`", del_in=5)
+        await message.edit(f"`algo deu errado! 🤔`\n\n**ERROR:** `{e_f}`", del_in=5)
 
 
 @kannax.on_cmd(
     "ban",
     about={
-        "header": "use this to ban group members",
-        "description": "Ban member from supergroup.\n"
-        "[NOTE: Requires proper admin rights in the chat!!!]",
-        "flags": {"-m": "minutes", "-h": "hours", "-d": "days"},
-        "examples": "{tr}ban [flag] [username | userid] or [reply to user] :reason (optional)",
+        "header": "use isso para banir membros do grupo",
+        "description": "Banir membro do grupo.\n"
+        "[NOTA: Requer direitos de administrador adequados no chat!!!]",
+        "flags": {"-m": "minutos", "-h": "horas", "-d": "dias"},
+        "examples": "{tr}ban [flag] [username | userid] ou [respnde um user] :motivo (opcional)",
     },
     allow_channels=False,
     check_restrict_perm=True,
 )
 async def ban_user(message: Message):
     """ban user from tg group"""
-    await message.edit("`Trying to Ban User.. Hang on!! ⏳`")
+    await message.edit("`Tentando banir o usuário .. Espere aí!! ⏳`")
     user_id, reason = message.extract_user_and_text
     if not user_id:
         await message.edit(
-            text="`no valid user_id or message specified,`"
-            "`do .help ban for more info`",
+            text="`nenhum user_id válido ou mensagem especificada,`"
+            "`.help ban para mais informações`",
             del_in=5,
         )
         return
@@ -192,16 +192,16 @@ async def ban_user(message: Message):
             log=__name__,
         )
     except UsernameInvalid:
-        await message.edit("`invalid username, try again with valid info ⚠`", del_in=5)
+        await message.edit("`nome de usuário inválido, tente novamente com informações válidas ⚠`", del_in=5)
     except PeerIdInvalid:
         await message.edit(
-            "`invalid username or userid, try again with valid info ⚠`", del_in=5
+            "`nome de usuário ou ID de usuário inválido, tente novamente com informações válidas ⚠`", del_in=5
         )
     except UserIdInvalid:
-        await message.edit("`invalid userid, try again with valid info ⚠`", del_in=5)
+        await message.edit("`ID de usuário inválido, tente novamente com informações válidas ⚠`", del_in=5)
     except Exception as e_f:
         await message.edit(
-            "`something went wrong 🤔, do .help ban for more info`\n\n"
+            "`algo deu errado 🤔, .help ban para mais informações`\n\n"
             f"**ERROR**: `{e_f}`",
             del_in=5,
         )
@@ -210,10 +210,10 @@ async def ban_user(message: Message):
 @kannax.on_cmd(
     "unban",
     about={
-        "header": "use this to unban group members",
-        "description": "Unban member from supergroup.\n"
-        "[NOTE: Requires proper admin rights in the chat!!!]",
-        "examples": "{tr}unban [username | userid] or [reply to user]",
+        "header": "use isso para cancelar o banimento de membros do grupo",
+        "description": "Desbanir membro do grupo.\n"
+        "[NOTA: Requer direitos de administrador adequados no chat!!!]",
+        "examples": "{tr}unban [username | userid] ou [responda um user]",
     },
     allow_channels=False,
     check_restrict_perm=True,
@@ -221,12 +221,12 @@ async def ban_user(message: Message):
 async def unban_usr(message: Message):
     """unban user from tg group"""
     chat_id = message.chat.id
-    await message.edit("`Trying to Unban User.. Hang on!! ⏳`")
+    await message.edit("`Tentando desbanir usuário .. Espere aí!! ⏳`")
     user_id, _ = message.extract_user_and_text
     if not user_id:
         await message.edit(
             text="`no valid user_id or message specified,`"
-            "`do .help unban for more info` ⚠",
+            "`.help unban para mais informações` ⚠",
             del_in=5,
         )
         return
