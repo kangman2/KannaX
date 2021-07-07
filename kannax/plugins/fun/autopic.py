@@ -38,7 +38,7 @@ async def _init() -> None:
 @kannax.on_cmd(
     "autopic",
     about={
-        "header": "set profile picture",
+        "header": "definir foto de perfil",
         "usage": "{tr}autopic\n{tr}autopic [image path]\nset timeout using {tr}sapicto",
     },
     allow_channels=False,
@@ -46,7 +46,7 @@ async def _init() -> None:
 )
 async def autopic(message: Message):
     global UPDATE_PIC  # pylint: disable=global-statement
-    await message.edit("`processing...`")
+    await message.edit("`processando...`")
     if UPDATE_PIC:
         if isinstance(UPDATE_PIC, asyncio.Task):
             UPDATE_PIC.cancel()
@@ -55,10 +55,10 @@ async def autopic(message: Message):
             {"_id": "UPDATE_PIC"}, {"$set": {"on": False}}, upsert=True
         )
         await asyncio.sleep(1)
-        await message.edit("`setting old photo...`")
+        await message.edit("`definindo foto antiga...`")
         await kannax.set_profile_photo(photo=BASE_PIC)
         await message.edit(
-            "auto profile picture updation has been **stopped**", del_in=5, log=__name__
+            "a atualização automática da foto do perfil foi **interrompida**", del_in=5, log=__name__
         )
         return
     image_path = message.input_str
@@ -68,13 +68,13 @@ async def autopic(message: Message):
     elif not image_path:
         profile_photo = await kannax.get_profile_photos("me", limit=1)
         if not profile_photo:
-            await message.err("sorry, couldn't find any picture!")
+            await message.err("desculpe, não consegui encontrar nenhuma foto!")
             return
         await kannax.download_media(profile_photo[0], file_name=BASE_PIC)
         store = True
     else:
         if not os.path.exists(image_path):
-            await message.err("input path not found!")
+            await message.err("caminho de entrada não encontrado!")
             return
         if os.path.exists(BASE_PIC):
             os.remove(BASE_PIC)
@@ -89,7 +89,7 @@ async def autopic(message: Message):
         {"_id": "UPDATE_PIC"}, {"$set": data_dict}, upsert=True
     )
     await message.edit(
-        "auto profile picture updation has been **started**", del_in=3, log=__name__
+        "a atualização automática da foto do perfil foi **iniciada**", del_in=3, log=__name__
     )
     UPDATE_PIC = asyncio.get_event_loop().create_task(apic_worker())
 
@@ -120,9 +120,9 @@ async def apic_worker():
                 tz=datetime.timezone(datetime.timedelta(minutes=30, hours=5))
             )
             date_time = (
-                f"DATE: {tim.day}.{tim.month}.{tim.year}\n"
+                f"DATA: {tim.day}.{tim.month}.{tim.year}\n"
                 f"TIME: {tim.hour}:{tim.minute}:{tim.second}\n"
-                "UTC+5:30"
+                "UTC-3:00"
             )
             d_width, d_height = draw.textsize(date_time, font=s_font)
             draw.multiline_text(
@@ -138,8 +138,8 @@ async def apic_worker():
             img.convert("RGB").save(MDFY_PIC)
             await kannax.set_profile_photo(photo=MDFY_PIC)
             os.remove(MDFY_PIC)
-            LOG.info("profile photo has been updated!")
+            LOG.info("foto do perfil foi atualizada!")
         await asyncio.sleep(1)
         count += 1
     if count:
-        LOG.info("profile picture updation has been stopped!")
+        LOG.info("a atualização da foto do perfil foi interrompida!")
