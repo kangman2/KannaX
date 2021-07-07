@@ -1,7 +1,7 @@
 # Copyright (C) 2020 BY - GitHub.com/code-rgb [TG - @deleteduser420]
 # All rights reserved.
 
-"""Bot Message forwarding"""
+"""Encaminhamento de mensagens de bot"""
 
 import asyncio
 from math import floor
@@ -39,16 +39,16 @@ ownersFilter = filters.user(list(Config.OWNER_ID))
 
 
 @kannax.on_cmd(
-    "bot_fwd", about={"header": "enable / disable Bot Forwards"}, allow_channels=False
+    "bot_fwd", about={"header": "habilitar/desabilitar encaminhamento de mensagens"}, allow_channels=False
 )
 async def bot_fwd_(message: Message):
-    """enable / disable Bot Forwards"""
+    """habilitar/desabilitar encaminhamento de mensagens"""
     if Config.BOT_FORWARDS:
         Config.BOT_FORWARDS = False
-        await message.edit("`Bot Forwards disabled !`", del_in=3, log=__name__)
+        await message.edit("`desabilitar encaminhamento de mensagens !`", del_in=3, log=__name__)
     else:
         Config.BOT_FORWARDS = True
-        await message.edit("`Bot Forwards enabled !`", del_in=3, log=__name__)
+        await message.edit("`habilitar encaminhamento de mensagens !`", del_in=3, log=__name__)
     await SAVED_SETTINGS.update_one(
         {"_id": "BOT_FORWARDS"},
         {"$set": {"is_active": Config.BOT_FORWARDS}},
@@ -72,8 +72,8 @@ if kannax.has_bot:
             await CHANNEL.log("**ERROR**: You Blocked your Bot !")
         except Exception as new_m_e:
             await CHANNEL.log(
-                f"Can't send message to __ID__: {Config.OWNER_ID[0]}"
-                "\n**Note:** message will be send to the first id in `OWNER_ID` only!"
+                f"Não posso enviar mensagem para __ID__: {Config.OWNER_ID[0]}"
+                "\n**Nota:** a mensagem será enviada para o primeiro id em `OWNER_ID` ape!"
                 f"\n\n**ERROR:** `{new_m_e}`"
             )
         else:
@@ -115,7 +115,7 @@ if kannax.has_bot:
                 await message.forward(user_id)
         except UserIsBlocked:
             await message.err(
-                "You cannot reply to this user as he blocked your bot !", del_in=5
+                "Você não pode responder a este usuário porque ele bloqueou seu bot !", del_in=5
             )
         except Exception as fwd_e:
             LOG.error(fwd_e)
@@ -127,32 +127,32 @@ if kannax.has_bot:
         & filters.regex(pattern=r"^/ban\s+(.*)")
     )
     async def bot_ban_(_, message: Message):
-        """ban a user from bot"""
-        start_ban = await kannax.bot.send_message(message.chat.id, "`Banning...`")
+        """banir um usuário do bot"""
+        start_ban = await kannax.bot.send_message(message.chat.id, "`Banindo")
         user_id, reason = extract_content(message)  # Ban by giving ID & Reason
         if not user_id:
-            await start_ban.err("User ID Not found", del_in=10)
+            await start_ban.err("ID do usuário não encontrado", del_in=10)
             return
         if not reason:
-            await message.err("Ban Aborted! provide a reason first!")
+            await message.err("Ban abortado! forneça uma razão primeiro!")
             return
         ban_user = await kannax.bot.get_user_dict(user_id, attr_dict=True)
         if ban_user.id in Config.OWNER_ID:
-            await start_ban.edit("I Can't Ban You My Master")
+            await start_ban.edit("Eu não posso te banir voce é meu mestre")
             return
         if ban_user.id in Config.SUDO_USERS:
             await start_ban.edit(
-                "That user is in my Sudo List,"
-                "Hence I can't ban him from bot\n"
-                "\n**Tip:** Remove them from Sudo List and try again.",
+                "Esse usuário está em minha lista de Sudo,"
+                "Portanto, não posso bani-lo do bot\n"
+                "\n**Nota:** Remova-os da Lista de Sudo e tente novamente.",
                 del_in=5,
             )
             return
         if found := await BOT_BAN.find_one({"user_id": ban_user.id}):
             await start_ban.edit(
                 "**#Already_Banned_from_Bot_PM**\n\n"
-                "User Already Exists in My Bot BAN List.\n"
-                f"**Reason For Bot BAN:** `{found.get('reason')}`",
+                "O usuário já existe na lista de BAN do meu bot.\n"
+                f"**Motivo do BAN:** `{found.get('reason')}`",
                 del_in=5,
             )
         else:
@@ -161,7 +161,7 @@ if kannax.has_bot:
     async def ban_from_bot_pm(ban_user, reason: str, log: str = False) -> None:
         user_ = await kannax.bot.get_user_dict(ban_user, attr_dict=True)
         banned_msg = (
-            f"<i>**You Have been Banned Forever**" f"</i>\n**Reason** : {reason}"
+            f"<i>**Você foi banido para sempre**" f"</i>\n**Motivo** : {reason}"
         )
         await asyncio.gather(
             BOT_BAN.insert_one(
@@ -172,7 +172,7 @@ if kannax.has_bot:
         info = (
             r"\\**#Banned_Bot_PM_User**//"
             f"\n\n👤 {user_.mention}\n"
-            f"**First Name:** {user_.fname}\n"
+            f"**Primeiro Nome:** {user_.fname}\n"
             f"**User ID:** `{user_.id}`\n**Reason:** `{reason}`"
         )
         if log:
@@ -188,7 +188,7 @@ if kannax.has_bot:
     async def broadcast_(_, message: Message):
         replied = message.reply_to_message
         if not replied:
-            await message.reply("Reply to a message for Broadcasting First !")
+            await message.reply("Responda a uma mensagem para Broadcasting primeiro !")
             return
         start_ = time()
         br_cast = await replied.reply("Broadcasting ...")
@@ -203,7 +203,7 @@ if kannax.has_bot:
                     await BOT_START.find_one_and_delete({"user_id": b_id})
                 else:
                     await kannax.bot.send_message(
-                        b_id, "🔊 You received a **new** Broadcast."
+                        b_id, "🔊 Você recebeu um **novo** Broadcast."
                     )
                     if to_copy:
                         await replied.copy(b_id)
@@ -228,17 +228,17 @@ if kannax.has_bot:
                                 total=bot_users_count,
                                 current=count + len(blocked_users),
                             )
-                            + f"\n\n• ✔️ **Success** :  `{count}`\n"
-                            + f"• ✖️ **Failed** :  `{len(blocked_users)}`"
+                            + f"\n\n• ✔️ **Sucesso** :  `{count}`\n"
+                            + f"• ✖️ **Fail** :  `{len(blocked_users)}`"
                         )
                         await br_cast.edit(prog_)
                     except FloodWait as e:
                         await asyncio.sleep(e.x)
         end_ = time()
-        b_info = f"🔊  Successfully broadcasted message to ➜  <b>{count} users.</b>"
+        b_info = f"🔊  Mensagem transmitida com sucesso para ➜  <b>{count} users.</b>"
         if len(blocked_users) != 0:
-            b_info += f"\n🚫  <b>{len(blocked_users)} users</b> blocked your bot recently, so have been removed."
-        b_info += f"\n⏳  <code>Process took: {time_formatter(end_ - start_)}</code>."
+            b_info += f"\n🚫  <b>{len(blocked_users)} users</b> bloqueou seu bot recentemente, então foi removido."
+        b_info += f"\n⏳  <code>Processo levou: {time_formatter(end_ - start_)}</code>."
         await br_cast.edit(b_info, log=__name__)
         if blocked_users:
             await asyncio.gather(*blocked_users)
@@ -253,9 +253,9 @@ if kannax.has_bot:
         reply = message.reply_to_message
         user_ = None
         if not reply:
-            await message.reply("Reply to a message to see user info")
+            await message.reply("Responda a uma mensagem para ver as informações do usuário")
             return
-        info_msg = await message.reply("`🔎 Searching for this user in my database ...`")
+        info_msg = await message.reply("`🔎 Procurando este usuário em meu banco de dados ...`")
         if uid_from_db := BOT_MSGS.search(reply.message_id):
             try:
                 user_ = await kannax.bot.get_user_dict(uid_from_db, attr_dict=True)
@@ -266,12 +266,12 @@ if kannax.has_bot:
 
         if not user_:
             return await message.edit(
-                "**ERROR:** `Sorry !, Can't Find this user in my database :(`", del_in=3
+                "**ERROR:** `Desculpe! Não consigo encontrar este usuário em meu banco de dados :(`", del_in=3
             )
         uinfo = (
             "**#User_Info**"
             f"\n\n👤 {user_.mention}\n"
-            f"**First Name:** {user_.fname}\n"
+            f"**Primeiro Nome:** {user_.fname}\n"
             f"**User ID:** `{user_.id}`"
         )
         await info_msg.edit(uinfo)
@@ -309,18 +309,18 @@ def extract_content(msg: Message):  # Modified a bound method
 @kannax.on_cmd(
     "bblist",
     about={
-        "header": "Get a List of Bot Banned Users",
-        "description": "Get Up-to-date list of users Bot Banned by you.",
+        "header": "Obtenha uma lista de usuários banidos por bot",
+        "description": "Obtenha uma lista atualizada de usuários que foram banidos por você.",
         "examples": "{tr}bblist",
     },
     allow_channels=False,
 )
 async def list_bot_banned(message: Message):
-    """view Bot Banned users"""
+    """visualizar usuários do bot banidos"""
     msg = ""
     async for c in BOT_BAN.find():
         msg += (
-            "**User** : "
+            "**Usuario** : "
             + str(c["firstname"])
             + "-> with **User ID** -> "
             + str(c["user_id"])
@@ -330,96 +330,96 @@ async def list_bot_banned(message: Message):
         )
 
     await message.edit_or_send_as_file(
-        f"**--Bot Banned Users List--**\n\n{msg}" if msg else "`bblist empty!`"
+        f"**--Lista de usuários banidos do bot--**\n\n{msg}" if msg else "`bblist vazia!`"
     )
 
 
 @kannax.on_cmd(
     "unbban",
     about={
-        "header": "Unban an User from bot",
-        "description": "Removes an user from your Bot Ban List",
+        "header": "Desbanir um usuário do bot",
+        "description": "Remove um usuário da sua lista de ban",
         "examples": "{tr}unbban [userid]",
     },
     allow_channels=False,
     allow_bots=True,
 )
 async def ungban_user(message: Message):
-    """unban a user from Bot's PM"""
+    """desbanir um usuário do PM do Bot"""
     await message.edit("`UN-BOT Banning ...`")
     user_id = message.input_str
     if not user_id:
-        await message.err("No input found !")
+        await message.err("Nenhuma entrada encontrada !")
         return
     user_id = message.input_str.split()[0].strip()
     try:
         get_mem = await message.client.get_user_dict(user_id)
     except (PeerIdInvalid, IndexError):
-        firstname = "Not Known !"
+        firstname = "Não conhecido !"
         if user_id.isdigit():
             user_id = int(user_id)
         else:
-            await message.err("User Not Known !, Provide a User ID to search.")
+            await message.err("Usuário desconhecido!, Forneça uma ID de usuário para pesquisar.")
             return
     else:
         firstname = get_mem["fname"]
         user_id = get_mem["id"]
     found = await BOT_BAN.find_one({"user_id": user_id})
     if not found:
-        await message.err("User Not Found in My Bot Ban List")
+        await message.err("Usuário não encontrado na lista de banimento do meu bot")
         return
     await asyncio.gather(
         BOT_BAN.delete_one(found),
         message.edit(
             r"\\**#Bot_UnBanned_User**//"
-            f"\n\n  **First Name:** {mention_html(user_id, firstname)}"
+            f"\n\n  **Primeiro Nome:** {mention_html(user_id, firstname)}"
             f"\n  **User ID:** `{user_id}`"
         ),
     )
 
 
 @kannax.on_cmd(
-    "bot_forwards", about={"header": "Help regarding commands for bot forwards"}
+    "bot_forwards", about={"header": "Ajuda sobre comandos para encaminhamentos de bot"}
 )
 async def bf_help(message: Message):
-    """See this For Help"""
+    """Veja isto para obter ajuda"""
     cmd_ = Config.CMD_TRIGGER
     bot_forwards_help = f"""
-        **Available Commands**
+        **Comandos Disponíveis**
 
     [Toggle]
-• `{cmd_}bot_fwd` - Enable / Disable bot Forwards
+• `{cmd_}bot_fwd` - Ativar / Desativar encaminhamentos de bot
 
-    <i>works **only in** bot pm</i>
-• `/ban` - Ban a User from Bot PM
+    <i>funciona **apenas em** bot pm</i>
+• `/ban` - Banir um usuário do bot PM
     e.g-
-    /ban [reply to forwarded message with reason]
-    /ban [user_id/user_name] reason
+    /ban [responder a mensagem encaminhada com o motivo]
+    /ban [user_id/user_name] motivo
 
-• `/broadcast` - Send a Broadcast Message to Users in your `{cmd_}bot_users`
+• `/broadcast` - Envie uma mensagem de broadcast para os usuários em seu `{cmd_}bot_users`
     e.g-
-    /broadcast [reply to a message]
+    /broadcast [responda a uma mensagem]
 
-• `/uinfo` - Get user Info
+• `/uinfo` - Obter informações do usuário
     e.g-
-    /uinfo [reply to forwarded message]
+    /uinfo [responder a mensagem encaminhada]
 
-    <i>can work outside bot pm</i>
-• `{cmd_}bblist` - BotBanList (Users Banned from your Bot's PM)
+    <i>pode usar fora do bot pm</i>
+• `{cmd_}bblist` - BotBanList (Usuários banidos do PM do seu bot)
     e.g-
     {cmd_}bblist
 
-• `{cmd_}unbban` - UnBotBan  (Unban Users that are in BotBanList)
+• `{cmd_}unbban` - UnBotBan  (Desbanir usuários que estão em BotBanList)
     e.g-
     {cmd_}unbban [user_id/user_name]
-    Hint: Check bblist for banned users.
+    Hint: Verifique o bblist para usuários banidos.
 """
     await message.edit(bot_forwards_help, del_in=60)
 
 
 def progress_str(total: int, current: int) -> str:
     percentage = current * 100 / total
-    prog_arg = "**Progress** : `{}%`\n" "```[{}{}]```"
+    prog_arg = "**Progresso** : `{}%`\n" "```[{}{}]```"
     return prog_arg.format(
         percentage,
         "".join((Config.FINISHED_PROGRESS_STR for i in range(floor(percentage / 5)))),
