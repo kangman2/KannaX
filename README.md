@@ -1,5 +1,5 @@
 <p align="center">
-<a href="https://t.me/kannaxupdates"><img src="https://telegra.ph//file/c6d95e3f661dc15bf0df7.jpg" width="128" height="128"/>
+<a href="https://t.me/kannaxupdates"><img src="https://telegra.ph/file/c005ca2f522659da9b978.png" width="400" height="400"/>
 </p>
 <p align="center">
 <a href="https://github.com/fnixdev"><img title="Author" src="https://img.shields.io/badge/Author-fnixdev-red.svg?style=for-the-badge&logo=github"></a>
