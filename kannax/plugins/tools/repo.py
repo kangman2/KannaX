@@ -6,11 +6,18 @@
 #
 # All rights reserved.
 
-from kannax import Config, Message, kannax
+from kannax import Config, Message, kannax, get_version
 
 
 @kannax.on_cmd("repo", about={"header": "link e detalhes do repositório"})
 async def see_repo(message: Message):
     """see repo"""
-    output = f"• **repo** : [KannaX]({Config.UPSTREAM_REPO})"
+    output = f"""    
+**Hey**, __I am using__  **KannaX** 🥰
+    
+    __kawaii userbot__
+
+• **KannaX version** : `{get_version()}`
+• **repo** : [KannaX]({Config.UPSTREAM_REPO})
+"""
     await message.edit(output)
