@@ -84,14 +84,14 @@ async def get_ytthumb(videoid: str):
 
 
 @kannax.on_cmd(
-    "yt",
+    "iytdl",
     about={
         "header": "ytdl com botões embutidos",
         "usage": "{tr}yt [URL / Text] ou [Responda um URL / Texto]",
     },
     check_downpath=True,
 )
-async def yt_inline(message: Message):
+async def iytdl_inline(message: Message):
     reply = message.reply_to_message
     input_url = None
     if message.input_str:
