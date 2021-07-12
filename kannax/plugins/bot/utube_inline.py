@@ -91,7 +91,7 @@ async def get_ytthumb(videoid: str):
     },
     check_downpath=True,
 )
-async def iytdl_inline(message: Message):
+async def yt_inline(message: Message):
     reply = message.reply_to_message
     input_url = None
     if message.input_str:
