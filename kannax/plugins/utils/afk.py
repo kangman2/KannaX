@@ -90,8 +90,8 @@ async def handle_afk_incomming(message: Message) -> None:
             if REASON:
                 out_str = (
                 f"▸ Oi, estou **AFK** agora.\n"
-                f"▸ **Motivo:** <code>{REASON}</code> [\u200c](https://telegra.ph/file/682f8a23615e221dd6e2f.mp4)"
-                f"▸ **Visto por ultimo:** `{afk_time} ago`\n"
+                f"▸ **Motivo:** <code>{REASON}</code> [\u200c](https://telegra.ph/file/682f8a23615e221dd6e2f.mp4)\n"
+                f"▸ **Visto por ultimo:** `{afk_time} ago`"
             )
             else:
                 out_str = choice(AFK_REASONS)
@@ -104,8 +104,8 @@ async def handle_afk_incomming(message: Message) -> None:
         if REASON:
             out_str = (
                 f"▸ Oi, estou **AFK** agora.\n"
-                f"▸ **Motivo:** <code>{REASON}</code> [\u200c](https://telegra.ph/file/682f8a23615e221dd6e2f.mp4)"
-                f"▸ **Visto por ultimo:** `{afk_time} ago`\n"
+                f"▸ **Motivo:** <code>{REASON}</code> [\u200c](https://telegra.ph/file/682f8a23615e221dd6e2f.mp4)\n"
+                f"▸ **Visto por ultimo:** `{afk_time} ago`"
             )
         else:
             out_str = choice(AFK_REASONS)
