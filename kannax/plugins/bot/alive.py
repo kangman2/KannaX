@@ -227,13 +227,13 @@ class Bot_Alive:
     @staticmethod
     def alive_info() -> str:
         alive_info_ = f"""
-<a href="https://t.me/kannaxupdates"><b>KannaX</a> is Up and Running.</b>
+<b>Yes master <a href="https://t.me/kannaxupdates">KannaX</a> it's alive.</b>
 
 ◇─◇──◇────★ KannaX ★─────◇──◇─◇
- ▫️ `Version`    :   __v{get_version()}__
+ ▫️ `Versão`    :   __v{get_version()}__
  ▫️ `Python`.      :   __v{versions.__python_version__}__
- ▫️ `Uptime`.      :   __{kannax.uptime}__
- ▫️ `Mode`         :   __{Bot_Alive._get_mode()}__
+ ▫️ `Atividade`.      :   __{kannax.uptime}__
+ ▫️ `Modo`         :   __{Bot_Alive._get_mode()}__
 ◇─◇──◇────★ ───── ★─────◇──◇─◇
 """
         return alive_info_
