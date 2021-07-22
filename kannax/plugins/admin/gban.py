@@ -1,4 +1,4 @@
-""" setup gban """
+""" configurar gban """
 
 import asyncio
 from typing import Union
@@ -63,13 +63,13 @@ async def antispam_(message: Message):
     allow_channels=False,
 )
 async def spam_protect_(message: Message):
-    """enable / disablehabilitar / desabilitar Intellivoid spam protection"""
+    """habilitar / desabilitar Proteção contra spam Intellivoid"""
     if Config.SPAM_PROTECTION:
         Config.SPAM_PROTECTION = False
-        await message.edit("`Intellivoid Spam Protection desativado !`", del_in=3)
+        await message.edit("`Proteção contra spam Intellivoid desativado !`", del_in=3)
     else:
         Config.SPAM_PROTECTION = True
-        await message.edit("`Intellivoid Spam Protection ativado !`", del_in=3)
+        await message.edit("`Proteção contra spam Intellivoid ativado !`", del_in=3)
     await SAVED_SETTINGS.update_one(
         {"_id": "SPAM_PROTECTION"},
         {"$set": {"data": Config.SPAM_PROTECTION}},

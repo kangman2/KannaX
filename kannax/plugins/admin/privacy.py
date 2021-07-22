@@ -1,4 +1,4 @@
-"""Block/Unblock Targetted User!"""
+"""Bloquear/desbloquear usuário-alvo!"""
 
 # Plugin By - XlayerCharon[XCB] X github.com/code-rgb
 # TG ~>>//@CharonCB21 X //@DeletedUser420
@@ -17,30 +17,30 @@ CHANNEL = kannax.getCLogger(__name__)
 @kannax.on_cmd(
     "block",
     about={
-        "header": "Blocks a User!",
-        "usage": "{tr}block [ID] or [Reply To User]",
-        "examples": "{tr}block @CharonCB21",
+        "header": "Bloqueia um usuário!",
+        "usage": "{tr}block [ID] ou [responda um usuario]",
+        "examples": "{tr}block @fnixdev",
     },
 )
 async def block_user(message: Message):
-    """Blocks a User!"""
+    """Bloqueia um usuário!"""
     reply = message.reply_to_message
     if not (reply or message.input_str):
-        await message.err("Reply to a user or give ID to block him/her !", del_in=5)
+        await message.err("Responda a um usuário ou forneça ID para bloqueá-lo !", del_in=5)
         return
     user_id = reply.from_user.id if reply else message.input_str
     bot_id = (await kannax.bot.get_me()).id
     if user_id == bot_id or user_id in Config.OWNER_ID:
-        await message.edit("Are you serious bruh? :/")
+        await message.edit("Você está falando sério, mano? :/")
         await asyncio.sleep(2)
-        await message.edit("Do you want me to block myself? :|", del_in=5)
+        await message.edit("Você quer que eu me bloqueie? :|", del_in=5)
     elif user_id in Config.SUDO_USERS:
-        await message.err("Remove User From Sudo First", del_in=5)
+        await message.err("Remova o usuário do sudo primeiro", del_in=5)
     else:
         try:
             user = await kannax.get_users(user_id)
         except BadRequest:
-            await message.err("User ID is Invalid !", del_in=5)
+            await message.err("User ID é inválida !", del_in=5)
             return
         await kannax.block_user(user_id)
         blocked_msg = action_msg(user, "BLOCKED")
@@ -50,27 +50,27 @@ async def block_user(message: Message):
 @kannax.on_cmd(
     "unblock",
     about={
-        "header": "Unblocks a User!",
-        "usage": "{tr}unblock [ID] or [Reply To User]",
-        "examples": "{tr}unblock @CharonCB21",
+        "header": "Desbloqueia um usuário!",
+        "usage": "{tr}unblock [ID] ou [Responda um Usuario]",
+        "examples": "{tr}unblock @fnixdev",
     },
 )
 async def unblock_user(message: Message):
-    """Unblocks a User!"""
+    """Desbloqueia um usuário!"""
     reply = message.reply_to_message
     if not (reply or message.input_str):
-        await message.err("Reply to a user or give ID to unblock him/her!", del_in=5)
+        await message.err("Responda a um usuário ou forneça ID para desbloqueá-lo!", del_in=5)
         return
     user_id = reply.from_user.id if reply else message.input_str
     if user_id in Config.OWNER_ID:
-        await message.edit("Are you serious bruh? :/")
+        await message.edit("Você está falando sério, mano? :/")
         await asyncio.sleep(2)
-        await message.edit("How am i even supposed to unblock myself? :|", del_in=5)
+        await message.edit("Como é que eu vou me desbloquear? :|", del_in=5)
     else:
         try:
             user = await kannax.get_users(user_id)
         except BadRequest:
-            await message.err("User ID is Invalid !", del_in=5)
+            await message.err("User ID é inválida !", del_in=5)
             return
         await kannax.unblock_user(user_id)
         unblocked_msg = action_msg(user, "UNBLOCKED")
@@ -78,4 +78,4 @@ async def unblock_user(message: Message):
 
 
 def action_msg(user, action):
-    return f"#{action}_USER\n>>  {mention_html(user.id, user.first_name)} has been <b>{action} in PM</b>."
+    return f"#{action}_USER\n>>  {mention_html(user.id, user.first_name)} foi <b>{action} em PM</b>."

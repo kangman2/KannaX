@@ -2,11 +2,11 @@
 
 # Copyright (C) 2020 by fnixdev@Github, < https://github.com/fnixdev >.
 #
-# This file is part of < https://github.com/fnixdev/KannaX > project,
-# and is released under the "GNU v3.0 License Agreement".
-# Please see < https://github.com/fnixdev/KannaX/blob/master/LICENSE >
+# Este arquivo é parte de < https://github.com/fnixdev/KannaX > project,
+# e é lançado sob o "GNU v3.0 License Agreement".
+# Por Favor leia < https://github.com/fnixdev/KannaX/blob/master/LICENSE >
 #
-# All rights reserved.
+# Todos os direitos reservados.
 
 import os
 from typing import Sequence
@@ -104,9 +104,9 @@ def _get_chat_lock(
 @kannax.on_cmd(
     "lock",
     about={
-        "header": "use this to lock group permissions",
-        "description": "Allows you to lock some common permission types in the chat.\n"
-        "[NOTE: Requires proper admin rights in the chat!!!]",
+        "header": "use isso para bloquear as permissões do grupo",
+        "description": "Permite que você bloqueie alguns tipos de permissão comuns no chat.\n"
+        "[NOTA: Requer direitos de administrador adequados no chat!!!]",
         "types": [
             "all",
             "msg",
@@ -121,29 +121,29 @@ def _get_chat_lock(
             "games",
             "stickers",
         ],
-        "examples": "{tr}lock [all | type]",
+        "examples": "{tr}lock [all | tipo]",
     },
     allow_channels=False,
     check_restrict_perm=True,
 )
 async def lock_perm(message: Message):
-    """lock chat permissions from tg group"""
+    """bloquear as permissões de bate-papo do grupo"""
     lock_type = message.input_str
     chat_id = message.chat.id
     if not lock_type:
-        await message.err(r"I Can't Lock Nothing! (－‸ლ)")
+        await message.err(r"Não consigo bloquear nada! (－‸ლ)")
         return
     if lock_type == "all":
         try:
             await message.client.set_chat_permissions(chat_id, ChatPermissions())
-            await message.edit("**🔒 Locked all permission from this Chat!**", del_in=5)
+            await message.edit("**🔒 Todas as permissões deste bate-papo foram bloqueadas!**", del_in=5)
             await CHANNEL.log(
                 f"#LOCK\n\nCHAT: `{message.chat.title}` (`{chat_id}`)\n"
-                f"PERMISSIONS: `All Permissions`"
+                f"PERMISSIONS: `Todas Permissões`"
             )
         except Exception as e_f:
             await message.edit(
-                r"`i don't have permission to do that ＞︿＜`\n\n" f"**ERROR:** `{e_f}`",
+                r"`eu não tenho permissão para fazer isso ＞︿＜`\n\n" f"**ERROR:** `{e_f}`",
                 del_in=5,
             )
         return
@@ -163,7 +163,7 @@ async def lock_perm(message: Message):
             perm,
         ) = _get_chat_lock(message, lock_type, True)
     else:
-        await message.err(r"Invalid lock type! ¯\_(ツ)_/¯")
+        await message.err(r"Tipo de bloqueio inválido! ¯\_(ツ)_/¯")
         return
     try:
         await message.client.set_chat_permissions(
@@ -182,14 +182,14 @@ async def lock_perm(message: Message):
                 can_pin_messages=pin,
             ),
         )
-        await message.edit(f"**🔒 Locked {perm} for this chat!**", del_in=5)
+        await message.edit(f"**🔒 Trancado {perm} para esse chat!**", del_in=5)
         await CHANNEL.log(
             f"#LOCK\n\nCHAT: `{message.chat.title}` (`{chat_id}`)\n"
-            f"PERMISSIONS: `{perm} Permission`"
+            f"PERMISSIONS: `{perm} Permissão`"
         )
     except Exception as e_f:
         await message.edit(
-            r"`i don't have permission to do that ＞︿＜`\n\n" f"**ERROR:** `{e_f}`",
+            r"`eu não tenho permissão para fazer isso ＞︿＜`\n\n" f"**ERROR:** `{e_f}`",
             del_in=5,
         )
 
@@ -197,9 +197,9 @@ async def lock_perm(message: Message):
 @kannax.on_cmd(
     "unlock",
     about={
-        "header": "use this to unlock group permissions",
-        "description": "Allows you to unlock some common permission types in the chat.\n"
-        "[NOTE: Requires proper admin rights in the chat!!!]",
+        "header": "use isso para desbloquear a permissão do grupo",
+        "description": "Permite que você desbloqueie alguns tipos de permissão comuns no chat.\n"
+        "[NOTE: Requer direitos de administrador adequados no chat!!!]",
         "types": [
             "all",
             "msg",
@@ -214,17 +214,17 @@ async def lock_perm(message: Message):
             "games",
             "stickers",
         ],
-        "examples": "{tr}unlock [all | type]",
+        "examples": "{tr}unlock [all | tipo]",
     },
     allow_channels=False,
     check_restrict_perm=True,
 )
 async def unlock_perm(message: Message):
-    """unlock chat permissions from tg group"""
+    """desbloquear permissões de bate-papo do grupo tg"""
     unlock_type = message.input_str
     chat_id = message.chat.id
     if not unlock_type:
-        await message.err(r"I Can't Unlock Nothing! (－‸ლ)")
+        await message.err(r"Não consigo desbloquear nada! (－‸ლ)")
         return
     if unlock_type == "all":
         try:
@@ -245,15 +245,15 @@ async def unlock_perm(message: Message):
                 ),
             )
             await message.edit(
-                "**🔓 Unlocked all permission from this Chat!**", del_in=5
+                "**🔓 Todas as permissões deste bate-papo foram desbloqueadas!**", del_in=5
             )
             await CHANNEL.log(
                 f"#UNLOCK\n\nCHAT: `{message.chat.title}` (`{chat_id}`)\n"
-                f"PERMISSIONS: `All Permissions`"
+                f"PERMISSIONS: `Todas Permissões`"
             )
         except Exception as e_f:
             await message.edit(
-                r"`i don't have permission to do that ＞︿＜`\n\n" f"**ERROR:** `{e_f}`",
+                r"`eu não tenho permissão para fazer isso ＞︿＜`\n\n" f"**ERROR:** `{e_f}`",
                 del_in=5,
             )
         return
@@ -273,7 +273,7 @@ async def unlock_perm(message: Message):
             uperm,
         ) = _get_chat_lock(message, unlock_type, False)
     else:
-        await message.err(r"Invalid Unlock Type! ¯\_(ツ)_/¯")
+        await message.err(r"Tipo de desbloqueio inválido! ¯\_(ツ)_/¯")
         return
     try:
         await message.client.set_chat_permissions(
@@ -292,14 +292,14 @@ async def unlock_perm(message: Message):
                 can_pin_messages=upin,
             ),
         )
-        await message.edit(f"**🔓 Unlocked {uperm} for this chat!**", del_in=5)
+        await message.edit(f"**🔓 Desbloqueado {uperm} para este chat!**", del_in=5)
         await CHANNEL.log(
             f"#UNLOCK\n\nCHAT: `{message.chat.title}` (`{chat_id}`)\n"
-            f"PERMISSIONS: `{uperm} Permission`"
+            f"PERMISSIONS: `{uperm} Permissão`"
         )
     except Exception as e_f:
         await message.edit(
-            r"`i don't have permission to do that ＞︿＜`\n\n" f"**ERROR:** `{e_f}`",
+            r"`eu não tenho permissão para fazer isso ＞︿＜`\n\n" f"**ERROR:** `{e_f}`",
             del_in=5,
         )
 
@@ -307,16 +307,16 @@ async def unlock_perm(message: Message):
 @kannax.on_cmd(
     "vperm",
     about={
-        "header": "use this to view group permissions",
-        "description": "Allows you to view permission types on/off status in the chat.",
+        "header": "use isso para ver as permissões do grupo",
+        "description": "Permite que você veja os tipos de permissões ativadas/desativadas no chat.",
     },
     allow_channels=False,
     allow_bots=False,
     allow_private=False,
 )
 async def view_perm(message: Message):
-    """check chat permissions from tg group"""
-    await message.edit("`Checking group permissions... Hang on!! ⏳`")
+    """verifique as permissões de chat do grupo"""
+    await message.edit("`Verificando as permissões do grupo... Aguarde !! ⏳`")
 
     def convert_to_emoji(val: bool):
         return "✅" if val else "❌"
@@ -357,7 +357,7 @@ async def view_perm(message: Message):
         )
         os.remove(local_chat_photo)
         await message.delete()
-        await CHANNEL.log("`vperm` command executed")
+        await CHANNEL.log("`vperm` comando executado")
     else:
         await message.edit(permission_view_str)
-        await CHANNEL.log("`vperm` command executed")
+        await CHANNEL.log("`vperm` comando executado")

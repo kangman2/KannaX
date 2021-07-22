@@ -1,4 +1,4 @@
-"""Plugin to manage federations"""
+"""Plugin para gerenciar federações"""
 # Author: Copyright (C) 2020 KenHV [https://github.com/KenHV]
 
 # For KannaX
@@ -19,8 +19,8 @@ CHANNEL = kannax.getCLogger(__name__)
 @kannax.on_cmd(
     "addf",
     about={
-        "header": "Add a chat to fed list",
-        "description": "Add a chat to fed list where message is to be sent",
+        "header": "Adicionar um bate-papo à lista do Fed",
+        "description": "Adicionar um bate-papo à lista de feeds onde a mensagem deve ser enviada",
         "usage": "{tr}addf",
     },
     allow_bots=False,
@@ -28,27 +28,27 @@ CHANNEL = kannax.getCLogger(__name__)
     allow_private=False,
 )
 async def addfed_(message: Message):
-    """Adds current chat to connected Feds."""
+    """Adiciona bate-papo atual aos federais conectados."""
     name = message.input_str or message.chat.title
     chat_id = message.chat.id
     found = await FED_LIST.find_one({"chat_id": chat_id})
     if found:
         await message.edit(
-            f"Chat __ID__: `{chat_id}`\nFed: **{found['fed_name']}**\n\nAlready exists in Fed List !",
+            f"Chat __ID__: `{chat_id}`\nFed: **{found['fed_name']}**\n\nJá existe na Lista Fed !",
             del_in=7,
         )
         return
     await FED_LIST.insert_one({"fed_name": name, "chat_id": chat_id})
-    msg_ = f"__ID__ `{chat_id}` added to Fed: **{name}**"
+    msg_ = f"__ID__ `{chat_id}` adicionado a Fed: **{name}**"
     await message.edit(msg_, log=__name__, del_in=7)
 
 
 @kannax.on_cmd(
     "delf",
     about={
-        "header": "Remove a chat from fed list",
-        "flags": {"-all": "Remove all the feds from fedlist"},
-        "description": "Remove a chat from fed list",
+        "header": "Remover um bate-papo da lista de fed",
+        "flags": {"-all": "Remova todas as feds do fedlist"},
+        "description": "Remover um bate-papo da lista de feds",
         "usage": "{tr}delf",
     },
     allow_bots=False,
@@ -56,26 +56,26 @@ async def addfed_(message: Message):
     allow_private=False,
 )
 async def delfed_(message: Message):
-    """Removes current chat from connected Feds."""
+    """Remove o bate-papo atual das defs conectados."""
     if "-all" in message.flags:
-        msg_ = "**Disconnected from all connected federations!**"
+        msg_ = "**Desconectado de todas as feds conectadas!**"
         await message.edit(msg_, log=__name__, del_in=7)
         await FED_LIST.drop()
     else:
         try:
             chat_ = await message.client.get_chat(message.input_str or message.chat.id)
         except (PeerIdInvalid, IndexError):
-            return await message.err("Provide a valid Chat ID", del_in=7)
+            return await message.err("Forneça um ID de bate-papo válido", del_in=7)
         chat_id = chat_.id
         out = f"{chat_.title}\nChat ID: {chat_id}\n"
         found = await FED_LIST.find_one({"chat_id": chat_id})
         if found:
-            msg_ = out + f"Successfully Removed Fed: **{found['fed_name']}**"
+            msg_ = out + f"Fed removida com sucesso: **{found['fed_name']}**"
             await message.edit(msg_, log=__name__, del_in=7)
             await FED_LIST.delete_one(found)
         else:
             return await message.err(
-                out + "**Does't exist in your Fed List !**", del_in=7
+                out + "**Não existe na sua Lista Fed !**", del_in=7
             )
 
 
@@ -83,19 +83,19 @@ async def delfed_(message: Message):
     "fban",
     about={
         "header": "Fban user",
-        "description": "Fban the user from the list of fed",
-        "usage": "{tr}fban [username|reply to user|user_id] [reason (optional)]",
-        "flags": {"-p": "Fban with proof"},
+        "description": "Fban o usuário da lista de feds",
+        "usage": "{tr}fban [username|responder o usuario|user_id] [razão (opcional)]",
+        "flags": {"-p": "Fban com prova"},
     },
     allow_bots=False,
     allow_channels=False,
 )
 async def fban_(message: Message):
-    """Bans a user from connected Feds."""
+    """Bane um usuario das feds conectadas."""
     user, reason = message.extract_user_and_text
     fban_arg = ["❯", "❯❯", "❯❯❯", "❯❯❯ <b>FBanned {}</b>"]
     await message.edit(fban_arg[0])
-    error_msg = "Provide a User ID or reply to a User"
+    error_msg = "Forneça uma ID de usuário ou responda a um usuário"
     if user is None:
         return await message.err(error_msg, del_in=7)
     try:
@@ -109,11 +109,11 @@ async def fban_(message: Message):
         or user == (await message.client.get_me()).id
     ):
         return await message.err(
-            "Can't F-Ban user that exists in Sudo or Owner", del_in=7
+            "Não é possível F-Ban usuário que existe no Sudo ou Proprietário", del_in=7
         )
     failed = []
     total = 0
-    reason = reason or "Not specified."
+    reason = reason or "Não especificado."
     reply = message.reply_to_message
     with_proof = bool("-p" in message.flags and reply)
     await message.edit(fban_arg[1])
@@ -135,10 +135,10 @@ async def fban_(message: Message):
                 )
                 resp = response.text.lower()
                 if not (
-                    ("new fedban" in resp)
-                    or ("starting a federation ban" in resp)
-                    or ("start a federation ban" in resp)
-                    or ("fedban reason updated" in resp)
+                    ("novo fedban" in resp)
+                    or ("iniciando um fedban" in resp)
+                    or ("iniciar um fedban" in resp)
+                    or ("razão de fedban atualizada" in resp)
                 ):
                     failed.append(f"{data['fed_name']}  \n__ID__: `{data['chat_id']}`")
         except FloodWait as f:
@@ -147,19 +147,19 @@ async def fban_(message: Message):
             failed.append(data["fed_name"])
     if total == 0:
         return await message.err(
-            "You Don't have any feds connected!\nsee .help addf, for more info."
+            "Você não tem feds conectadas! \nveja .help addf, para obter mais informações."
         )
     await message.edit(fban_arg[2])
 
     if len(failed) != 0:
-        status = f"Failed to fban in {len(failed)}/{total} feds.\n"
+        status = f"Falha fban em {len(failed)}/{total} feds.\n"
         for i in failed:
             status += "• " + i + "\n"
     else:
-        status = f"Success! Fbanned in `{total}` feds."
+        status = f"Sucesso! Fbanned em `{total}` feds."
     msg_ = (
         fban_arg[3].format(user_.mention)
-        + f"\n**Reason:** {reason}\n**Status:** {status}"
+        + f"\n**Razão:** {reason}\n**Status:** {status}"
     )
     if with_proof:
         proof_link = (await reply.forward(Config.LOG_CHANNEL_ID)).link
@@ -171,18 +171,18 @@ async def fban_(message: Message):
     "unfban",
     about={
         "header": "Unfban user",
-        "description": "Unfban the user from the list of fed",
-        "usage": "{tr}unfban [username|reply to user|user_id]",
+        "description": "Retire o banimento do usuário da lista de feds",
+        "usage": "{tr}unfban [username|responder o usuario|user_id]",
     },
     allow_bots=False,
     allow_channels=False,
 )
 async def unfban_(message: Message):
-    """Unbans a user from connected Feds."""
+    """Cancela o ban de um usuário das feds conectadas."""
     user = (message.extract_user_and_text)[0]
     fban_arg = ["❯", "❯❯", "❯❯❯", "❯❯❯ <b>Un-FBanned {}</b>"]
     await message.edit(fban_arg[0])
-    error_msg = "Provide a User ID or reply to a User"
+    error_msg = "Forneça uma ID de usuário ou responda a um usuário"
     if user is None:
         return await message.err(error_msg, del_in=7)
     try:
@@ -215,16 +215,16 @@ async def unfban_(message: Message):
             failed.append(data["fed_name"])
     if total == 0:
         return await message.err(
-            "You Don't have any feds connected!\nsee .help addf, for more info."
+            "Você não tem feds conectados! \nveja .help addf, para obter mais informações."
         )
     await message.edit(fban_arg[2])
 
     if len(failed) != 0:
-        status = f"Failed to un-fban in `{len(failed)}/{total}` feds.\n"
+        status = f"Falha ao anular o fban em `{len(failed)}/{total}` feds.\n"
         for i in failed:
             status += "• " + i + "\n"
     else:
-        status = f"Success! Un-Fbanned in `{total}` feds."
+        status = f"Successo! Un-Fbanned em `{total}` feds."
     msg_ = fban_arg[3].format(user_.mention) + f"\n**Status:** {status}"
     await message.edit(msg_, log=__name__)
 
@@ -233,18 +233,18 @@ async def unfban_(message: Message):
     "listf",
     about={
         "header": "Fed Chat List",
-        "description": "Get a list of chats added in fed",
+        "description": "Obtenha uma lista de chats adicionados na fed",
         "usage": "{tr}listf",
     },
 )
 async def fban_lst_(message: Message):
-    """List all connected Feds."""
+    """Liste todos as feds conectados."""
     out = ""
     async for data in FED_LIST.find():
         out += f"• <i>ID<b/i>: `{data['chat_id']}`\n  Fed: <b>{data['fed_name']}</b>\n"
     await message.edit_or_send_as_file(
-        "**Connected federations:**\n\n" + out
+        "**Federações conectadas:**\n\n" + out
         if out
-        else "**You haven't connected to any federations yet!**",
-        caption="Connected Fed List",
+        else "**Você ainda não se conectou a nenhuma federação!**",
+        caption="Lista Feds Conectadas",
     )
