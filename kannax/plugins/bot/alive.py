@@ -230,10 +230,10 @@ class Bot_Alive:
 <b>Yes master <a href="https://t.me/kannaxupdates">KannaX</a> it's alive.</b>
 
 ◇─◇──◇────★ KannaX ★─────◇──◇─◇
- ▫️ `Versão`    :   __v{get_version()}__
- ▫️ `Python`.      :   __v{versions.__python_version__}__
- ▫️ `Atividade`.      :   __{kannax.uptime}__
- ▫️ `Modo`         :   __{Bot_Alive._get_mode()}__
+ ▫️ `Modo`           :   __{Bot_Alive._get_mode()}__
+ ▫️ `Versão`      :   __v{get_version()}__
+ ▫️ `Python`         :   __v{versions.__python_version__}__
+ ▫️ `Atividade`  :   __{kannax.uptime}__
 ◇─◇──◇────★ ───── ★─────◇──◇─◇
 """
         return alive_info_
