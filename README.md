@@ -78,7 +78,7 @@
 
 <p><strong>3. Instale os requisitos</strong></p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>pip <span class="nb">install</span> <span class="nt">-r</span> requirements.txt
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>pip3 <span class="nb">install</span> <span class="nt">-r</span> requirements.txt
 </code></pre></div></div>
 
 <p><strong>4. Crie config.env como config.env.sample e preencha as Vars</strong></p>
