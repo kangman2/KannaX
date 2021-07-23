@@ -1,4 +1,4 @@
-"""KannaX Module to handle warns"""
+"""KannaX Module para lidar com avisos"""
 
 
 # This program is distributed in the hope that it will be useful,
@@ -34,26 +34,26 @@ WARNS_DB = get_collection("WARNS_DB")
 CHANNEL = kannax.getCLogger(__name__)
 
 no_input_reply = (
-    "I don't know who you're talking about, you're going to need to specify a user...!"
+    "Eu não sei de quem você está falando, você vai precisar especificar um usuário...!"
 )
-userid_not_valid = "can't get the user!"
-user_is_admin = "Sorry! I can't warn an Admin"
-owner_or_sudo = "I can't Ban My Owner and Sudo Users"
-permission_denied = "You Don't have the permission to do it !"
-warn_removed = "✅ Warn Removed Successfully"
-warn_removed_caption = "✅ Warn removed by {} !"
-no_warns_msg = "Well, {} doesn't have any warns."
-total_warns_msg = "User {} has {}/{} warnings.\n**Reasons** are:"
-purge_warns = "{} reset {} warns of {} in {}!"
-banned_text = "Warnings has been exceeded! {} has been {}!"
+userid_not_valid = "não consigo pegar o usuário!"
+user_is_admin = "Desculpe! Não posso adverter um administrador"
+owner_or_sudo = "Não consigo banir meu proprietário e usuários de Sudo"
+permission_denied = "Você não tem permissão para fazer isso !"
+warn_removed = "✅ advertencia removida com sucesso"
+warn_removed_caption = "✅ advertencia removida por {} !"
+no_warns_msg = "Bem, {} não tem nenhuma adverte."
+total_warns_msg = "O usuário {} tem {} / {} avisos.\n**Razão** are:"
+purge_warns = "{} reset {} aviso sobre {} em {}!"
+banned_text = "Os avisos foram excedidos! {} tem sido {}!"
 
 
 @kannax.on_cmd(
     "warn",
     about={
-        "header": "warn a user",
-        "description": "Use this command to warn the user! you can mention or reply to the offended user and add reason if needed",
-        "usage": "{tr}warn [username | userid] or [reply to user] :reason (optional)",
+        "header": "adverte um usuario",
+        "description": "Use este comando para avisar o usuário! você pode mencionar ou responder ao usuário ofendido e adicionar o motivo, se necessário",
+        "usage": "{tr}warn [username | userid] ou [responda um usuario] :razão (opcional)",
     },
     allow_private=False,
     allow_bots=False,
@@ -121,9 +121,9 @@ async def warn_func(message: Message):
         return
     warn_text = r"\\**#Warned_User**//"
     warn_text += f"""
-{by_user.mention} has warned {warned_user.mention} in <b>{chat_title}</b>
-Reason: <code>{reason}</code>
-Warns: {wcount}/{max_warns}
+{by_user.mention} foi advertido {warned_user.mention} em <b>{chat_title}</b>
+Razão: <code>{reason}</code>
+Avisos: {wcount}/{max_warns}
 """
     warn_id = str(
         (
@@ -141,14 +141,14 @@ Warns: {wcount}/{max_warns}
     if message.client.is_bot:
         btn_row = [
             InlineKeyboardButton(
-                "⚠️  Remove Warn", callback_data=f"remove_warn_{warn_id}"
+                "⚠️  Remove Aviso", callback_data=f"remove_warn_{warn_id}"
             )
         ]
         if rules:
             botname = (await kannax.bot.get_me()).username
             btn_row.append(
                 InlineKeyboardButton(
-                    "📝  Rules", url=f"https://t.me/{botname}?start={rules}"
+                    "📝  Regras", url=f"https://t.me/{botname}?start={rules}"
                 )
             )
 

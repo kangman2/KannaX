@@ -39,17 +39,17 @@ class EditMessageText(RawClient):  # pylint: disable=missing-class-docstring
 
         Parameters:
             chat_id (``int`` | ``str``):
-                Unique identifier (int) or username (str) of the target chat.
-                For your personal cloud (Saved Messages)
-                you can simply use "me" or "self".
-                For a contact that exists in your Telegram address book
-                you can use his phone number (str).
+                Identificador único (int) ou nome de usuário (str) do chat de destino.
+                Para sua nuvem pessoal (mensagens salvas)
+                você pode simplesmente usar "me" ou "self".
+                Para um contato que existe em sua lista de endereços do Telegram
+                você pode usar seu número de telefone (str).
 
             message_id (``int``):
-                Message identifier in the chat specified in chat_id.
+                Identificador de mensagem no bate-papo especificado em chat_id.
 
             text (``str``):
-                New text of the message.
+                Novo texto da mensagem.
 
             del_in (``int``):
                 Time in Seconds for delete that message.
