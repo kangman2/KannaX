@@ -18,21 +18,15 @@
 /**
    ⚠️Kang por sua própria conta e risco⚠️
     Sua conta do Telegram pode ser banida.
-    Eu não sou responsável por qualquer uso indevido deste bot
-    Este bot tem o objetivo de se divertir com memes,
-    bem como gerenciar grupos de forma eficiente.
-    Ele também pode ajudá-lo a se controlar.
-    Você acabou enviando spam para grupos, sendo denunciado à direita e à esquerda,
-    e então você acabou em uma batalha com o Telegram
+    Eu não sou responsável por qualquer uso indevido deste bot.
+    Você acabou enviando spam para grupos, sendo denunciado
     e no final a Equipe do Telegram
     excluiu sua conta?
-    E depois disso, você apontou seus dedos para mim
-    por sua conta ter sido excluída?
     Estarei rolando no chão rindo de você.
     Sim! você ouviu direito.
 /**
 ```
-## Requirements 
+## Requisitos 
 * Python 3.8 ou Superior
 * Telegram [API Keys](https://my.telegram.org/apps)
 * Google Drive [API Keys](https://console.developers.google.com/)
@@ -50,7 +44,7 @@
 <p>- Cique no botao Deploy.</p>
 <p>- Ligue o Dyno na aba de Resource.</p>
 <p>- É isso ... Comece a usar KannaX.</p>
-<p>Você pode adicionar tambem <a href="https://telegra.ph/Deploy-VARs-Heroku-05-26">VARs não obrigatorias</a> mais tarde de acordo com suas necessidades. Esses vars são usados por seus respectivos plug-ins no userbot para funcionar. Para saber como adicionar vars não obrigatórios, verifique este <a href="https://telegra.ph/Tutorial-VARs-Extras-06-15">Guia</a>.</p>
+<p>Você pode adicionar tambem <a href="https://telegra.ph/VARs-N%C3%A3o-Obrigatorias-KannaX-07-23">VARs não obrigatorias</a> mais tarde de acordo com suas necessidades. Esses vars são usados por seus respectivos plug-ins no userbot para funcionar. Para saber como adicionar vars não obrigatórios, verifique este <a href="https://fnixdev.gitbook.io/kannax/">Guia</a>.</p>
 
 ### Instalando com Metodo Tradicional
 
