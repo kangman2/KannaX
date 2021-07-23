@@ -108,5 +108,5 @@
 * [PaperPlane](https://github.com/RaphielGang/Telegram-Paperplane)
 * [Uniborg](https://github.com/SpEcHiDe/UniBorg)
 
-### Copyright & License 
+### Direitos e Licensa
 [**GNU General Public License v3.0**](https://github.com/fnixdev/KannaX/blob/master/LICENSE)
