@@ -1,4 +1,4 @@
-""" Download Youtube Video / Audio in a User friendly interface """
+""" Baixe o vídeo / áudio do Youtube em uma interface amigável """
 # --------------------------- #
 #   Modded ytdl by code-rgb   #
 # --------------------------- #
@@ -86,8 +86,8 @@ async def get_ytthumb(videoid: str):
 @kannax.on_cmd(
     "iytdl",
     about={
-        "header": "ytdl with inline buttons",
-        "usage": "{tr}iytdl [URL / Text] or [Reply to URL / Text]",
+        "header": "ytdl com botões",
+        "usage": "{tr}iytdl [URL / Texto] ou [Responda um URL / Texto]",
     },
     check_downpath=True,
 )
@@ -102,16 +102,16 @@ async def iytdl_inline(message: Message):
         elif reply.caption:
             input_url = reply.caption
     if not input_url:
-        return await message.err("Input or reply to a valid youtube URL", del_in=5)
-    await message.edit(f"🔎 Searching Youtube for: <code>'{input_url}'</code>")
+        return await message.err("Insira ou responda a um URL válido do YouTube", del_in=5)
+    await message.edit(f"🔎 Pesquisando no Youtube: <code>'{input_url}'</code>")
     input_url = input_url.strip()
     if message.client.is_bot:
         link = get_yt_video_id(input_url)
         if link is None:
             search_ = VideosSearch(input_url, limit=15)
-            resp = (search_.result()).get("result")
+            resp = (search_.result()).get("resultados")
             if len(resp) == 0:
-                await message.err(f'No Results found for "{input_url}"', del_in=7)
+                await message.err(f'Nenhum resultado encontrado para "{input_url}"', del_in=7)
                 return
             outdata = await result_formatter(resp)
             key_ = rand_key()
@@ -126,7 +126,7 @@ async def iytdl_inline(message: Message):
                     ],
                     [
                         InlineKeyboardButton(
-                            text="📜  List all",
+                            text="📜  Listar todos",
                             callback_data=f"ytdl_listall_{key_}_1",
                         ),
                         InlineKeyboardButton(
@@ -170,7 +170,7 @@ if kannax.has_bot:
         if str(choice_id).isdigit():
             choice_id = int(choice_id)
             if choice_id == 0:
-                await c_q.answer("🔄  Processing...", show_alert=False)
+                await c_q.answer("🔄  Processando...", show_alert=False)
                 await c_q.edit_message_reply_markup(
                     reply_markup=(await download_button(yt_code))
                 )
@@ -178,15 +178,15 @@ if kannax.has_bot:
         startTime = time()
         choice_str, disp_str = get_choice_by_id(choice_id, downtype)
         media_type = "Video" if downtype == "v" else "Audio"
-        callback_continue = f"Downloading {media_type} Please Wait..."
-        callback_continue += f"\n\nFormat Code : {disp_str}"
+        callback_continue = f"Baixando {media_type} Aguarde..."
+        callback_continue += f"\n\nFormato : {disp_str}"
         await c_q.answer(callback_continue, show_alert=True)
-        upload_msg = await kannax.send_message(Config.LOG_CHANNEL_ID, "Uploading...")
+        upload_msg = await kannax.send_message(Config.LOG_CHANNEL_ID, "Enviando...")
         yt_url = BASE_YT_URL + yt_code
         await c_q.edit_message_text(
             text=(
-                f"**⬇️ Downloading {media_type} ...**"
-                f"\n\n🔗  [<b>Link</b>]({yt_url})\n🆔  <b>Format Code</b> : {disp_str}"
+                f"**⬇️ Baixando {media_type} ...**"
+                f"\n\n🔗  [<b>Link</b>]({yt_url})\n🆔  <b>Formato</b> : {disp_str}"
             ),
         )
         if downtype == "v":
@@ -203,7 +203,7 @@ if kannax.has_bot:
             else:
                 _fpath = _path
         if not _fpath:
-            await upload_msg.err("nothing found !")
+            await upload_msg.err("nada encontrado !")
             return
         if not thumb_pic and downtype == "v":
             thumb_pic = str(
@@ -254,7 +254,7 @@ if kannax.has_bot:
             total = len(search_data)
         else:
             return await c_q.answer(
-                "Search data doesn't exists anymore, please perform search again ...",
+                "Os dados de pesquisa não existem mais, execute a pesquisa novamente ...",
                 show_alert=True,
             )
         if choosen_btn == "back":
@@ -280,7 +280,7 @@ if kannax.has_bot:
         elif choosen_btn == "next":
             index = int(page) + 1
             if index > total:
-                return await c_q.answer("That's All Folks !", show_alert=True)
+                return await c_q.answer("Isso é tudo, pessoal !", show_alert=True)
             await c_q.answer()
             front_vid = search_data.get(str(index))
             await c_q.edit_message_media(
@@ -298,12 +298,12 @@ if kannax.has_bot:
                 ),
             )
         elif choosen_btn == "listall":
-            await c_q.answer("View Changed to:  📜  List", show_alert=False)
+            await c_q.answer("Visualização alterada para:  📜  Lista", show_alert=False)
             list_res = ""
             for vid_s in search_data:
                 list_res += search_data.get(vid_s).get("list_view")
             telegraph = post_to_telegraph(
-                a_title=f"Showing {total} youtube video results for the given query ...",
+                a_title=f"Mostrando {total} resultados de vídeo do YouTube para a consulta fornecida ...",
                 content=list_res,
             )
             await c_q.edit_message_media(
@@ -316,13 +316,13 @@ if kannax.has_bot:
                     [
                         [
                             InlineKeyboardButton(
-                                "↗️  Click To Open",
+                                "↗️  Clique para abrir",
                                 url=telegraph,
                             )
                         ],
                         [
                             InlineKeyboardButton(
-                                "📰  Detailed View",
+                                "📰  Visão detalhada",
                                 callback_data=f"ytdl_detail_{data_key}_{page}",
                             )
                         ],
@@ -331,7 +331,7 @@ if kannax.has_bot:
             )
         else:  # Detailed
             index = 1
-            await c_q.answer("View Changed to:  📰  Detailed", show_alert=False)
+            await c_q.answer("Visualização alterada para:  📰  Detalhada", show_alert=False)
             first = search_data.get(str(index))
             await c_q.edit_message_media(
                 media=(
@@ -377,7 +377,7 @@ def _tubeDl(url: str, starttime, uid: str):
         LOGGER.error(e)
     except GeoRestrictedError:
         LOGGER.error(
-            "ERROR: The uploader has not made this video available in your country"
+            "ERROR: O remetente não disponibilizou este vídeo em seu país"
         )
     else:
         return x
@@ -456,12 +456,12 @@ async def result_formatter(results: list):
             out += "<code>{}</code>\n\n".format(
                 "".join(x.get("text") for x in r.get("descriptionSnippet"))
             )
-        out += f'<b>❯  Duration:</b> {r.get("accessibility").get("duration")}\n'
+        out += f'<b>❯  Duração:</b> {r.get("accessibility").get("duration")}\n'
         views = f'<b>❯  Views:</b> {r.get("viewCount").get("short")}\n'
         out += views
-        out += f'<b>❯  Upload date:</b> {r.get("publishedTime")}\n'
+        out += f'<b>❯  Data de Upload:</b> {r.get("publishedTime")}\n'
         if upld:
-            out += "<b>❯  Uploader:</b> "
+            out += "<b>❯  Canal:</b> "
             out += f'<a href={upld.get("link")}>{upld.get("name")}</a>'
         v_deo_id = r.get("id")
         output[index] = dict(
@@ -480,7 +480,7 @@ def yt_search_btns(
     buttons = [
         [
             InlineKeyboardButton(
-                text="⬅️  Back",
+                text="⬅️  Voltar",
                 callback_data=f"ytdl_back_{data_key}_{page}",
             ),
             InlineKeyboardButton(
@@ -490,7 +490,7 @@ def yt_search_btns(
         ],
         [
             InlineKeyboardButton(
-                text="📜  List all",
+                text="📜  Listar todos",
                 callback_data=f"ytdl_listall_{data_key}_{page}",
             ),
             InlineKeyboardButton(
@@ -515,10 +515,10 @@ def download_button(vid: str, body: bool = False):
     buttons = [
         [
             InlineKeyboardButton(
-                "⭐️ BEST - 📹 MKV", callback_data=f"ytdl_download_{vid}_mkv_v"
+                "⭐️ Melhor - 📹 MKV", callback_data=f"ytdl_download_{vid}_mkv_v"
             ),
             InlineKeyboardButton(
-                "⭐️ BEST - 📹 WebM/MP4",
+                "⭐️ Melhor - 📹 WebM/MP4",
                 callback_data=f"ytdl_download_{vid}_mp4_v",
             ),
         ]
@@ -560,7 +560,7 @@ def download_button(vid: str, body: bool = False):
     buttons += [
         [
             InlineKeyboardButton(
-                "⭐️ BEST - 🎵 320Kbps - MP3", callback_data=f"ytdl_download_{vid}_mp3_a"
+                "⭐️ Melhor - 🎵 320Kbps - MP3", callback_data=f"ytdl_download_{vid}_mp3_a"
             )
         ]
     ]
