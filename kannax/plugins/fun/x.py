@@ -21,11 +21,11 @@ from kannax import Config, Message, kannax
 )
 async def usx_(message: Message):
     if "-alt" in message.flags:
-        path = "resources/logo_alt.jpg"
+        path = "resources/logo_alt.png"
     elif "-ghost" in message.flags:
         path = "resources/ghosts.jpg"
     else:
-        path = "resources/logo.jpg"
+        path = "resources/logo.png"
 
     replied = message.reply_to_message
     await message.edit("𝐗")

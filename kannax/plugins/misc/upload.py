@@ -22,7 +22,7 @@ from kannax.utils.exceptions import ProcessCanceled
 LOGGER = kannax.getLogger(__name__)
 CHANNEL = kannax.getCLogger(__name__)
 
-LOGO_PATH = "resources/logo_x.jpg"
+LOGO_PATH = "resources/logo_x.png"
 
 
 @kannax.on_cmd(
