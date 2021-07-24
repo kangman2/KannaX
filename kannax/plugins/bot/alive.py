@@ -95,7 +95,7 @@ async def send_alive_message(message: Message) -> None:
         caption += (
             f"\n⚡️  <a href={Config.UPSTREAM_REPO}><b>REPO</b></a>"
             "    <code>|</code>    "
-            "👥  <a href='https://t.me/useless_x'><b>SUPPORT</b></a>"
+            "👥  <a href='https://t.me/fnixdev'><b>SUPPORT</b></a>"
         )
     if not Config.ALIVE_MEDIA:
         await client.send_photo(
