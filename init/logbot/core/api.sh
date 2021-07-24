@@ -1,12 +1,14 @@
 #!/bin/bash
 #
-# Copyright (C) 2020 by fnixdev@Github, < https://github.com/fnixdev >.
+# Copyright (C) 2020 by UsergeTeam@Github, < https://github.com/UsergeTeam >.
 #
-# Este arquivo é parte de < https://github.com/fnixdev/KannaX > project,
-# e é lançado sob o "GNU v3.0 License Agreement".
-# Por Favor leia < https://github.com/fnixdev/KannaX/blob/master/LICENSE >
+# This file is part of < https://github.com/UsergeTeam/Userge > project,
+# and is released under the "GNU v3.0 License Agreement".
+# Please see < https://github.com/uaudith/Userge/blob/master/LICENSE >
 #
-# Todos os direitos reservados.
+# All rights reserved.
+#
+# Editado por fnixdev
 
 declare -r _api_url="https://api.telegram.org/bot"
 declare -i _mid=0 _isChecked=0
