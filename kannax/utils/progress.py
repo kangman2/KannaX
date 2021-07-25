@@ -32,9 +32,9 @@ async def progress(
         del _TASKS[task_id]
         try:
             if c_q:
-                await c_q.edit_message_text("`finalizing process ...`")
+                await c_q.edit_message_text("`processo de finalização ...`")
             else:
-                await message.try_to_edit("`finalizing process ...`")
+                await message.try_to_edit("`processo de finalização ...`")
         except FloodWait as f_e:
             await asyncio.sleep(f_e.x)
         return
@@ -51,10 +51,10 @@ async def progress(
         progress_str = (
             "__{}__ : `{}`\n"
             + "```[{}{}]```\n"
-            + "**Progress** : `{}%`\n"
-            + "**Completed** : `{}`\n"
+            + "**Progresso** : `{}%`\n"
+            + "**Completado** : `{}`\n"
             + "**Total** : `{}`\n"
-            + "**Speed** : `{}/s`\n"
+            + "**Velocidade** : `{}/s`\n"
             + "**ETA** : `{}`"
         )
         progress_str = progress_str.format(

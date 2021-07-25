@@ -10,17 +10,17 @@ from kannax import Message, kannax
 @kannax.on_cmd(
     "slet",
     about={
-        "header": "Get a Sticker",
-        "description": "Generates Sticker with provided text",
-        "usage": "{tr}slet [text | reply]",
-        "examples": "{tr}slet DeadSun",
+        "header": "Obtenha um adesivo",
+        "description": "Gera adesivo com texto fornecido",
+        "usage": "{tr}slet [texto | responda uma mensagem]",
+        "examples": "{tr}slet KannaX",
     },
     allow_via_bot=False,
 )
 async def sticklet(message: Message):
     sticktext = message.input_or_reply_str
     if not sticktext:
-        await message.edit("**Bruh** ~`I need some text to make sticklet`")
+        await message.edit("**Baka** ~`Eu preciso de algum texto para fazer o sticker`")
         return
     await message.delete()
     if message.reply_to_message:

@@ -5,7 +5,7 @@ import math
 from kannax import kannax
 
 
-@kannax.on_cmd("yp$", about={"header": "Year Progress Bar"})
+@kannax.on_cmd("yp$", about={"header": "Barra de progresso do ano"})
 async def progresss(message):
     x = datetime.datetime.now()
     day = int(x.strftime("%j"))
@@ -37,5 +37,5 @@ async def progresss(message):
         "▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓",
     ]
 
-    message_out = f"<b>Year Progress</b>\n<code>{progress[num]} {percent}%</code>"
+    message_out = f"<b>Progresso do ano</b>\n<code>{progress[num]} {percent}%</code>"
     await message.edit(message_out)

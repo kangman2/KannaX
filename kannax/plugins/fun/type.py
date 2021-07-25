@@ -17,12 +17,12 @@ from kannax import Message, kannax
 
 
 @kannax.on_cmd(
-    "type", about={"header": "Simulate a typewriter", "usage": "{tr}type [text]"}
+    "type", about={"header": "Simule uma máquina de escrever", "usage": "{tr}type [texto]"}
 )
 async def type_(message: Message):
     text = message.input_str
     if not text:
-        await message.err("input not found")
+        await message.err("entrada não encontrada")
         return
     s_time = 0.1
     typing_symbol = "|"

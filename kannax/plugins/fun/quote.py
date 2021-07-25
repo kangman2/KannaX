@@ -10,9 +10,9 @@ from kannax.utils.exceptions import StopConversation
 @kannax.on_cmd(
     "q",
     about={
-        "header": "Quote a message",
-        "flags": {"-l": "limit, for multiple messages"},
-        "usage": "Reply {tr}q -l[message limit]",
+        "header": "Quote uma mensagem",
+        "flags": {"-l": "limite, para várias mensagens"},
+        "usage": "Responda {tr}q -l[limite]",
         "examples": ["{tr}q", "{tr}q -l3"],
     },
     allow_via_bot=False,
@@ -51,7 +51,7 @@ async def quotecmd(message: Message):
     else:
         await message.delete()
     if not args and len(quote_list) == 0:
-        await message.err("Reply to a message or provide an input to quote !", del_in=5)
+        await message.err("Responda a uma mensagem ou fornecer um texto para quote !", del_in=5)
         return
     try:
         async with kannax.conversation("QuotLyBot", timeout=100) as conv:

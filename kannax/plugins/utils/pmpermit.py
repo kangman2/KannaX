@@ -72,10 +72,10 @@ async def allow(message: Message):
             {"_id": userid}, {"$set": {"status": "allowed"}}, upsert=True
         )
         if a.matched_count:
-            await message.edit("`Already approved to direct message`", del_in=3)
+            await message.edit("`Já aprovado para mensagem privada`", del_in=3)
         else:
             await (await kannax.get_users(userid)).unblock()
-            await message.edit("`Approved to direct message`", del_in=3)
+            await message.edit("`Aprovado para mensagem privada`", del_in=3)
 
         if userid in PMPERMIT_MSG:
             await kannax.delete_messages(userid, message_ids=PMPERMIT_MSG[userid])
@@ -83,7 +83,7 @@ async def allow(message: Message):
 
     else:
         await message.edit(
-            "I need to reply to a user or provide the username/id or be in a private chat",
+            "Preciso responder a um usuário ou fornecer o nome de usuário/id ou estar em um chat privado",
             del_in=3,
         )
 
@@ -108,12 +108,12 @@ async def denyToPm(message: Message):
             Config.ALLOWED_CHATS.remove(userid)
         a = await ALLOWED_COLLECTION.delete_one({"_id": userid})
         if a.deleted_count:
-            await message.edit("`Prohibitted to direct message`", del_in=3)
+            await message.edit("`Proibido para mensagem privada`", del_in=3)
         else:
-            await message.edit("`Nothing was changed`", del_in=3)
+            await message.edit("`Nada foi mudado`", del_in=3)
     else:
         await message.edit(
-            "I need to reply to a user or provide the username/id or be in a private chat",
+            "Preciso responder a um usuário ou fornecer o nome de usuário/id ou estar em um chat privado",
             del_in=3,
         )
 
@@ -149,10 +149,10 @@ async def pmguard(message: Message):
     global pmCounter  # pylint: disable=global-statement
     if Config.ALLOW_ALL_PMS:
         Config.ALLOW_ALL_PMS = False
-        await message.edit("`PM_guard activated`", del_in=3, log=__name__)
+        await message.edit("`PM_guard ativado`", del_in=3, log=__name__)
     else:
         Config.ALLOW_ALL_PMS = True
-        await message.edit("`PM_guard deactivated`", del_in=3, log=__name__)
+        await message.edit("`PM_guard desativado`", del_in=3, log=__name__)
         pmCounter.clear()
     await SAVED_SETTINGS.update_one(
         {"_id": "PM GUARD STATUS"},
@@ -284,13 +284,13 @@ async def uninvitedPmHandler(message: Message):
             await message.from_user.block()
             await asyncio.sleep(1)
             await CHANNEL.log(
-                f"#BLOCKED\n{user_dict['mention']} has been blocked due to spamming in pm !! "
+                f"#BLOCKED\n{user_dict['mention']} foi bloqueado devido a spam no pm do meu mestre!! "
             )
         else:
             pmCounter[message.from_user.id] += 1
             await message.reply(
-                f"You have {pmCounter[message.from_user.id]} out of 4 **Warnings**\n"
-                "Please wait until you get approved to pm !",
+                f"Você tem {pmCounter[message.from_user.id]} de 4 **Avisos**\n"
+                "Por favor, espere até ser aprovado para pm!",
                 del_in=5,
             )
     else:
@@ -302,7 +302,7 @@ async def uninvitedPmHandler(message: Message):
             )
         ).message_id
         await asyncio.sleep(1)
-        await CHANNEL.log(f"#NEW_MESSAGE\n{user_dict['mention']} has messaged you")
+        await CHANNEL.log(f"#NEW_MESSAGE\n{user_dict['mention']} enviou uma mensagem para você")
 
 
 @kannax.on_filters(

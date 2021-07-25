@@ -1,1 +1,1 @@
-## X Cache Folder
+## Pasta de Cache do KannaX

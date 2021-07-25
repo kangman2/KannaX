@@ -7,11 +7,11 @@ from kannax.utils import mention_html
 @kannax.on_cmd(
     "admins",
     about={
-        "header": "View or mention admins in chat",
+        "header": "Ver ou mencionar administradores no chat",
         "flags": {
-            "-m": "mention all admins",
-            "-mc": "only mention creator",
-            "-id": "show ids",
+            "-m": "mencionar todos os administradores",
+            "-mc": "apenas mencione o criador",
+            "-id": "mostrar ids",
         },
         "usage": "{tr}admins [any flag] [chatid]",
     },
@@ -28,7 +28,7 @@ async def mentionadmins(message: Message):
     show_id = "-id" in flags
     if not chat_id:
         chat_id = message.chat.id
-    mentions = "<b>Admins in {}</b>\n".format(
+    mentions = "<b>Admins em {}</b>\n".format(
         (await message.client.get_chat(chat_id)).title
     )
     try:
