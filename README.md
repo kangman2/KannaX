@@ -34,7 +34,7 @@
 
 ## Como Instalar
 
-- Antes de tudo leia o [TUTORIAL](https://fnixdev.gitbook.io/kannax/)
+- Antes de tudo leia o [TUTORIAL](https://fnixdev.github.io/Kanna/)
 - [​![Deploy](https://www.herokucdn.com/deploy/button.svg)​](https://heroku.com/deploy?template=https://github.com/fnixdev/KannaX-Deploy)​
 
 ## String Session
