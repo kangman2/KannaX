@@ -50,7 +50,7 @@ _checkDefaultVars() {
     replyLastMessage "Verificando ENV Vars padrão ..."
     declare -rA def_vals=(
         [WORKERS]=0
-        [PREFERRED_LANGUAGE]="en"
+        [PREFERRED_LANGUAGE]="pt"
         [DOWN_PATH]="downloads"
         [UPSTREAM_REMOTE]="upstream"
         [UPSTREAM_REPO]="https://github.com/fnixdev/KannaX"
